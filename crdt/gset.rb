@@ -51,7 +51,7 @@ class GSet
   end
 
   def from_marshal(marshaled)
-    gs = GSet.new
+    gs = new
     gs.members.merge Marshal.load(marshaled)
 
     return gs
