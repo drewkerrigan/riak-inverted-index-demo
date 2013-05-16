@@ -1,6 +1,6 @@
 require 'bundler/setup'
 require 'sinatra'
-require 'riak-client'
+require 'riak'
 
 get '/hi' do
   "Hello World!"
