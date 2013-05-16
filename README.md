@@ -1,0 +1,2 @@
+riak-inverted-index-demo
+========================
