@@ -1,6 +1,7 @@
 require 'bundler/setup'
 require 'sinatra'
 require 'riak'
+require './index/inverted_index'
 
 class Zombie
   attr_accessor :fields, :data
@@ -36,13 +37,20 @@ get '/2i/:zip' do
 end
 
 get '/ii/:zip' do
-  results = "no"
-  erb :query, :locals => {:results => results}
+  client = Riak::Client.new
+
+  inv_idx = InvertedIndex.new(client, 'zombies')
+
+  results = inv_idx.get_index(params[:zip]).instance_variable_get('@inverted_index')
+
+  erb :query, :locals => {:results => results.members.to_a}
 end
 
 get '/load' do
   client = Riak::Client.new
   zombies = []
+
+  inv_idx = InvertedIndex.new(client, 'zombies')
 
   File.open("data.csv") do |file|
 
@@ -53,10 +61,12 @@ get '/load' do
 
       zombies << zombie.data
 
-      riak_obj = client['zombies'].new
+      riak_obj = client['zombies'].new(zombie.data[:ssn])
       riak_obj.data = zombie.data
       riak_obj.indexes['zip_bin'] << zombie.data[:zip]
       riak_obj.store
+
+      inv_idx.put_index(zombie.data[:zip], zombie.data[:ssn])
     end
   end
 
