@@ -8,18 +8,19 @@ class InvertedIndex
     self.client = client
     self.bucket_name = "#{bucket_name}_inverted_indices"
     self.bucket = client.bucket(self.bucket_name)
+    self.bucket.allow_mult = true
   end
 
   def put_index(index_name, key)
-    index_obj = get_index(index_name)
-
-    index = index_obj.instance_variable_get('@inverted_index')
-
+    index = GSet.new
     index.add(key)
 
-    index_obj.raw_data = index.to_marshal
+    object = self.bucket.new(index_name)
+    object.content_type = 'text/plain'
+    #object.data = index.to_json
+    object.raw_data = index.to_marshal
 
-    index_obj.store
+    object.store
   end
 
   def get_index(index_name)
@@ -31,16 +32,21 @@ class InvertedIndex
       if !obj.raw_data.nil?
         index.merge_marshal obj.raw_data
       end
+      #if !obj.data.nil?
+      #  index.merge_json obj.data
+      #end
     }
 
     # If resolving siblings...
     if index_obj.siblings.length > 1
-      index_obj = index_obj.store
+      # previous content type was mulitpart/mixed, reset to something more innocuous
+      index_obj.content_type = 'text/plain'
+      index_obj.raw_data = index.to_marshal
+      #index_obj.data = index.to_json
+      index_obj.store
     end
 
-    index_obj.instance_variable_set('@inverted_index', index)
-
-    return index_obj
+    return index
   end
 
 end

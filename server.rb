@@ -41,7 +41,7 @@ get '/ii/:zip' do
 
   inv_idx = InvertedIndex.new(client, 'zombies')
 
-  results = inv_idx.get_index(params[:zip]).instance_variable_get('@inverted_index')
+  results = inv_idx.get_index(params[:zip])
 
   erb :query, :locals => {:results => results.members.to_a}
 end
