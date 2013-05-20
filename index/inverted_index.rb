@@ -6,7 +6,7 @@ class InvertedIndex
 
   def initialize(client, bucket_name)
     self.client = client
-    self.bucket_name = "#{bucket_name}_inverted_indices"
+    self.bucket_name = "#{bucket_name}_inv"
     self.bucket = client.bucket(self.bucket_name)
     self.bucket.allow_mult = true
   end

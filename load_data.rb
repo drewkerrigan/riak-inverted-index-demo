@@ -1,10 +1,10 @@
 require 'bundler/setup'
 require('riak')
 require('./index/inverted_index')
-require('./zombie')
+require('./models/zombie')
 
 def load_data(filename)
-  client = Riak::Client.new
+  client = Riak::Client.new(:protocol => 'pbc')
 
   inv_idx = InvertedIndex.new(client, 'zombies')
 
