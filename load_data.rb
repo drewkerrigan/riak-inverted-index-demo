@@ -3,7 +3,7 @@ require('riak')
 require('./models/zombie')
 
 def load_data(filename)
-  client = Riak::Client.new
+  client = Riak::Client.new(:protocol => 'pbc')
 
   inv_idx = InvertedIndex.new(client, 'zombies')
 
