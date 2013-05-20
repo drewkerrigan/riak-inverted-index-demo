@@ -1,5 +1,4 @@
 require 'riak'
-require './index/inverted_index'
 require './models/zombie'
 
 class Search
@@ -25,8 +24,11 @@ class Search
     zombies = []
     results = self.send(method_name) if self.respond_to? method_name
 
+
+    p results
+
     unless results.nil?
-      for zombie_key in results.members
+      for zombie_key in results
         p zombie_key
         zombies << @client['zombies'].get(zombie_key).data
       end
@@ -40,8 +42,9 @@ class Search
   end
 
   def inverted_index_search()
-    inv_idx = InvertedIndex.new(@client, 'zombies')
-    inv_idx.get_index(@query)
+    @client['zombies'].get_index('zip_inv', @query)
+    #inv_idx = InvertedIndex.new(@client, 'zombies')
+    #inv_idx.get_index(@query)
   end
 
 end

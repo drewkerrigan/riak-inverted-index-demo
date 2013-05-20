@@ -1,6 +1,5 @@
 require 'bundler/setup'
 require('riak')
-require('./index/inverted_index')
 require('./models/zombie')
 
 def load_data(filename)
@@ -24,20 +23,8 @@ def load_data(filename)
       riak_obj = client['zombies'].new(zombie.data[:ssn])
       riak_obj.data = zombie.data
       riak_obj.indexes['zip_bin'] << zombie.data[:zip]
+      riak_obj.indexes['zip_inv'] << zombie.data[:zip]
       riak_obj.store
-
-      inv_idx.put_index(zombie.data[:zip], zombie.data[:ssn])
-      state_city_idx.put_index(zombie.data[:state], city)
-      city_3_idx.put_index(city_3, city)
-      city_zip_idx.put_index(city, zombie.data[:zip])
-
-      # Do read-repair (by retrieving index) periodically to avoid sibling explosion
-      if i % 20 == 0
-        inv_idx.get_index(zombie.data[:zip])
-        state_city_idx.get_index(zombie.data[:state])
-        city_3_idx.get_index(city_3)
-        city_zip_idx.get_index(city)
-      end
 
     end
   end
