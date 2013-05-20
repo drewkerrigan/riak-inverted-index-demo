@@ -1,5 +1,7 @@
+require 'riak'
+
 class Zombie
-  attr_accessor :fields, :data
+  attr_accessor :fields, :data, :client
 
   def initialize()
     @fields = [:dna, :sex, :name, :address, :city, :state,

@@ -1,5 +1,14 @@
-<h1>Query...</h1>
 <p>Here are the results of your query</p>
-<p>
-<%= results %>
-</p>
+
+<table>
+  <% results[0].keys.each do |key| %>
+      <th><%= key %></th>
+  <% end %>
+  <% results.each do |zombie| %>
+      <tr>
+        <% zombie.values.each do |val| %>
+            <td><%= val[0..20] %><%= "..." if val.length > 30 %></td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>

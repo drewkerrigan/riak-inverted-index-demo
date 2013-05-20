@@ -1,2 +1,24 @@
 <h1>Zombies...</h1>
+
 <p>There are zombies here</p>
+
+<h1>Query</h1>
+
+<form class="well form-search" id="query-form">
+  <div class="control-group">
+    <label class="control-label" for="select01">Index Method</label>
+    <div class="controls">
+      <select id="index_select">
+        <option>inverted</option>
+        <option>secondary</option>
+      </select>
+    </div>
+  </div>
+
+  <label for="zip_input">Zip: </label> <input type="text" id="zip_input" name="zip" class="input-medium search-query" value="39201" />
+  <button type="submit" class="btn">Find Zombies</button>
+</form>
+
+<div id="query-results" >
+
+</div>
