@@ -1,7 +1,6 @@
 require 'bundler/setup'
 require('riak')
-require('./index/inverted_index')
-require('./zombie')
+require('./models/zombie')
 
 def load_data(filename)
   client = Riak::Client.new
@@ -18,9 +17,12 @@ def load_data(filename)
       riak_obj = client['zombies'].new(zombie.data[:ssn])
       riak_obj.data = zombie.data
       riak_obj.indexes['zip_bin'] << zombie.data[:zip]
+      riak_obj.indexes['zip_inv'] << zombie.data[:zip]
       riak_obj.store
 
-      inv_idx.put_index(zombie.data[:zip], zombie.data[:ssn])
+
+
+      #inv_idx.put_index(zombie.data[:zip], zombie.data[:ssn])
     end
   end
 end
