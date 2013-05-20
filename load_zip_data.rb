@@ -79,7 +79,7 @@ def load_data(filename)
 
       city = zip_data.data[:city]
       city_3 = city[0, 3]
-      state = zip_data.data[:stateabbreviation] + ' '
+      state = zip_data.data[:stateabbreviation]
       city_str = "#{city}, #{state}"
       zip = zip_data.data[:zipcode]
 
