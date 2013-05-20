@@ -5,7 +5,6 @@ require('./zombie')
 
 def load_data(filename)
   client = Riak::Client.new
-  zombies = []
 
   inv_idx = InvertedIndex.new(client, 'zombies')
 
@@ -15,8 +14,6 @@ def load_data(filename)
       fields = line.split(",")
       zombie = Zombie.new()
       zombie.from_array(fields)
-
-      zombies << zombie.data
 
       riak_obj = client['zombies'].new(zombie.data[:ssn])
       riak_obj.data = zombie.data
