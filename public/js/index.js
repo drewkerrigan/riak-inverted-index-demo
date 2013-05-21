@@ -1,56 +1,129 @@
+var map;
+var markersArray = [];
+
 $(function() {
 
     $('#query-form').submit(function() {
-        $.get('/query/' + $('#index_select').val() + '/' + $('#zip_input').val(), function(data) {
-            $('#query-results').html(data);
+        $.ajax({url:'/query/' + $('#index_select').val() + '/' + $('#zip_input').val(), dataType:"json"}).done(function(data) {
+//            $('#query-results').html(data);
+            populateTable(data);
+            addZombies(data);
         });
+
         return false;
     });
 });
 
 function initialize() {
-    var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+    var groundZero = new google.maps.LatLng(40.294155, -83.002662);
     var mapOptions = {
-        zoom: 4,
-        center: myLatlng,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        zoom: 12,
+        center: groundZero,
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+    };
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    google.maps.event.addListener(map, 'click', function(event) {
+        getZombies(event.latLng);
+    });
+}
+
+function getZombies(latLng) {
+    lat = latLng.lat();
+    lon = latLng.lng();
+    $.ajax({url:"/query/geo?lat=" + lat + "&lon=" + lon, dataType:"json"}).done(function (data) {
+        populateTable(data);
+        addZombies(data);
+    });
+}
+
+function populateTable(data) {
+    $('#query_results').empty();
+
+    var header = ['dna','sex','name','address','city','state','zip','phone',
+        'birthdate','ssn','job','bloodtype','weight','height'];
+
+    var header_row= $('<tr>');
+    $.each(header, function(i, head) {
+        header_row.append($('<th>').text(head));
+    });
+    header_row.appendTo($('#query_results'));
+
+    $.each(data, function(i, row) {
+        $('#query_results')
+            .append($('<tr>')
+                .append($('<td>').text(row['dna'].substring(0, 10) + "..."))
+                .append($('<td>').text(row['sex']))
+                .append($('<td>').text(row['name']))
+                .append($('<td>').text(row['address']))
+                .append($('<td>').text(row['city']))
+                .append($('<td>').text(row['state']))
+                .append($('<td>').text(row['zip']))
+                .append($('<td>').text(row['phone']))
+                .append($('<td>').text(row['birthdate']))
+                .append($('<td>').text(row['ssn']))
+                .append($('<td>').text(row['job']))
+                .append($('<td>').text(row['bloodtype']))
+                .append($('<td>').text(row['weight']))
+                .append($('<td>').text(row['height']))
+
+            );
+    });
+}
+
+function addZombies(zombies) {
+    clearOverlays();
+
+    var bounds = new google.maps.LatLngBounds();
+
+    $.each(zombies, function() {
+        lat = parseFloat(this['latitude']);
+        lon = parseFloat(this['longitude']);
+
+        var position = new google.maps.LatLng(lat, lon);
+
+        bounds.extend(position);
+
+        addMarker(position);
+    })
+
+    map.fitBounds(bounds);
+}
+
+function addMarker(location) {
+    marker = new google.maps.Marker({
+        position: location,
+        map: map
+    });
+    markersArray.push(marker);
+}
+
+// Removes the overlays from the map, but keeps them in the array
+function clearOverlays() {
+    if (markersArray) {
+        for (i in markersArray) {
+            markersArray[i].setMap(null);
+        }
     }
+}
 
-    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+// Shows any overlays currently in the array
+function showOverlays() {
+    if (markersArray) {
+        for (i in markersArray) {
+            markersArray[i].setMap(map);
+        }
+    }
+}
 
-    var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading">Uluru</h1>'+
-        '<div id="bodyContent">'+
-        '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-        'sandstone rock formation in the southern part of the '+
-        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
-        'south west of the nearest large town, Alice Springs; 450&#160;km '+
-        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
-        'features of the Uluru - Kata Tjuta National Park. Uluru is '+
-        'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
-        'Aboriginal people of the area. It has many springs, waterholes, '+
-        'rock caves and ancient paintings. Uluru is listed as a World '+
-        'Heritage Site.</p>'+
-        '<p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-        'http://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-        '(last visited June 22, 2009).</p>'+
-        '</div>'+
-        '</div>';
-
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
-
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map,
-        title: 'Uluru (Ayers Rock)'
-    });
-    google.maps.event.addListener(marker, 'click', function() {
-        infowindow.open(map,marker);
-    });
+// Deletes all markers in the array by removing references to them
+function deleteOverlays() {
+    if (markersArray) {
+        for (i in markersArray) {
+            markersArray[i].setMap(null);
+        }
+        markersArray.length = 0;
+    }
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);

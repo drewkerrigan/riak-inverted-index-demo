@@ -3,27 +3,17 @@ require './models/zombie'
 
 class Search
 
-  attr_accessor :method, :query, :client
+  attr_accessor :index, :query, :client
 
-  SECONDARY="secondary"
-  INVERTED="inverted"
-
-  def initialize(method, query)
-    @method = method
+  def initialize(index, query)
+    @index = index
     @query = query
     @client = Riak::Client.new
   end
 
   def run()
-    unless [SECONDARY, INVERTED].include? @method
-      raise "Unsupported method"
-    end
-
-    method_name = @method + "_index_search"
-
     zombies = []
-    results = self.send(method_name) if self.respond_to? method_name
-
+    results = index_search
 
     p results
 
@@ -37,14 +27,7 @@ class Search
     return zombies
   end
 
-  def secondary_index_search()
-    @client['zombies'].get_index('zip_bin', @query)
+  def index_search()
+    @client['zombies'].get_index(@index, @query)
   end
-
-  def inverted_index_search()
-    @client['zombies'].get_index('zip_inv', @query)
-    #inv_idx = InvertedIndex.new(@client, 'zombies')
-    #inv_idx.get_index(@query)
-  end
-
 end

@@ -9,13 +9,13 @@ def load_data(filename)
   File.open(filename) do |file|
 
     file.each_with_index do |line, i|
-      fields = line.split(",")
+      fields = line..strip().split(",")
       zombie = Zombie.new()
       zombie.from_array(fields)
 
       city = "#{zombie.data[:city]}, #{zombie.data[:state]}"
       city_3 = city[0, 3]
-      geohash = GeoHash.encode(zombie.data[:latitude].to_f, zombie.data[:longitude].to_f, 1)
+      geohash = GeoHash.encode(zombie.data[:latitude].to_f, zombie.data[:longitude].to_f, 1)[0, 4]
 
       riak_obj = client['zombies'].new(zombie.data[:ssn])
       riak_obj.data = zombie.data
