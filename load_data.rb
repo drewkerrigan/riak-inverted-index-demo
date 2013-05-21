@@ -9,7 +9,7 @@ def load_data(filename)
   File.open(filename) do |file|
 
     file.each_with_index do |line, i|
-      fields = line..strip().split(",")
+      fields = line.strip().split(",")
       zombie = Zombie.new()
       zombie.from_array(fields)
 
