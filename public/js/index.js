@@ -74,6 +74,7 @@ function populateTable(data) {
 function addZombies(zombies) {
     clearOverlays();
 
+    var boundsChanged = false;
     var bounds = new google.maps.LatLngBounds();
 
     $.each(zombies, function() {
@@ -83,11 +84,12 @@ function addZombies(zombies) {
         var position = new google.maps.LatLng(lat, lon);
 
         bounds.extend(position);
+        boundsChanged = true;
 
         addMarker(position);
     })
 
-    map.fitBounds(bounds);
+    if (boundsChanged) map.fitBounds(bounds);
 }
 
 function addMarker(location) {
