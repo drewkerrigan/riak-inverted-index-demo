@@ -13,3 +13,7 @@ get '/query/:method/:zip' do
 
   erb :query_results, :locals => {:results => results}, :layout => false
 end
+
+get '/map' do
+  erb :map, :layout => false
+end
