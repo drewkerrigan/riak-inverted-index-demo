@@ -20,7 +20,6 @@ get '/query/geo' do
   lon = params[:lon].to_f
 
   geohash = GeoHash.encode(lat, lon, 1)[0, 4]
-  puts geohash
 
   search = Search.new('geohash_inv', geohash)
   results = search.run()

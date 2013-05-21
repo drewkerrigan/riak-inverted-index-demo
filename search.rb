@@ -15,11 +15,8 @@ class Search
     zombies = []
     results = index_search
 
-    p results
-
     unless results.nil?
       for zombie_key in results
-        p zombie_key
         zombies << @client['zombies'].get(zombie_key).data
       end
     end

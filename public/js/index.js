@@ -15,9 +15,9 @@ $(function() {
 });
 
 function initialize() {
-    var groundZero = new google.maps.LatLng(40.294155, -83.002662);
+    var groundZero = new google.maps.LatLng(38.956160, -77.397262);
     var mapOptions = {
-        zoom: 12,
+        zoom: 15,
         center: groundZero,
         mapTypeId: google.maps.MapTypeId.TERRAIN
     };
