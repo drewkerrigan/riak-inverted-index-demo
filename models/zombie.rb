@@ -6,7 +6,7 @@ class Zombie
   def initialize()
     @fields = [:dna, :sex, :name, :address, :city, :state,
                :zip, :phone, :birthdate, :ssn, :job, :bloodtype,
-               :weight, :height, :lattitude, :longitude]
+               :weight, :height, :latitude, :longitude]
 
     @data = {}
   end

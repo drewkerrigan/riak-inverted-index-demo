@@ -21,6 +21,7 @@ Cons:
 - Indexes could potentially grow to very large sizes, necessitating index partitioning which adds to the number of gets and puts for every index modification action
 - A Grow Only Set (G-Set) has no provision for deleting. It could be implemented with an external locking mechanism and rewriting the set without the deleted index value.  The properties of an eventually consistent database could still be and issue in the event of a cluster partition.
 - In our implemenation, siblings are only merged when an index retrieval operation takes place. Low cardinality in the index key-space results in a potentially large number of siblings between reads which causes an increasingly higher write latency until the silbings are resolved. A well-timed index retrieval will mitigate this issue.
+- 2i Binary Indexes allow searching based on part of a 2i value and 2i Integer Indexes allow searching based on a range or 2i Values however Key searching is not possible without the use of Map Reduce jobs.  A viable strategy is to create indexes which point to the terms of other indexes.
 
 Potential Use Cases:
 
