@@ -15,5 +15,5 @@ get '/query/:method/:zip' do
 end
 
 get '/map' do
-  erb :map
+  erb :map, :layout => false
 end
