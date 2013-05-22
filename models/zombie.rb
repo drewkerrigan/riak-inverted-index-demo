@@ -1,4 +1,5 @@
 require 'riak'
+require 'geohash'
 
 class Zombie
   attr_accessor :fields, :data, :client, :robject
@@ -11,14 +12,13 @@ class Zombie
     @data = {}
 
     @client = client
-    @client = Riak::Client.new if client.nil?
+    @client = Riak::Client.new(:protocol => 'pbc') if client.nil?
   end
 
   def search_index(index, query)
     zombies = []
     results = @client['zombies'].get_index(index, query)
-
-    unless results.nil?
+    unless results == false
       for zombie_key in results
         zombies << @client['zombies'].get(zombie_key).data
       end
@@ -51,6 +51,14 @@ class Zombie
     end
 
     self.create_robject()
+  end
+
+  def geohash(precision)
+    GeoHash.encode(@data[:latitude].to_f, @data[:longitude].to_f, 1)[0, precision]
+  end
+
+  def citystate()
+    "#{@data[:city]}, #{@data[:state]}"
   end
 
   def add_index(index, value)
