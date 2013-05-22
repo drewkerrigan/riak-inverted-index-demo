@@ -27,13 +27,11 @@ put '/zombie/:index' do
 end
 
 get '/query/geo' do
-  lat = params[:lat].to_f
-  lon = params[:lon].to_f
-
-  geohash = GeoHash.encode(lat, lon, 1)[0, 4]
-
   zombie = Zombie.new()
-  results = zombie.search_index('geohash_inv', geohash)
+  zombie.data[:latitude] = params[:lat].to_f
+  zombie.data[:longitude] = params[:lon].to_f
+
+  results = zombie.search_index('geohash_inv', zombie.geohash(4))
 
   erb :generic_json, :locals => {:json => results.to_json}, :layout => false
 end
