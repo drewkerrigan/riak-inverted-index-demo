@@ -1,6 +1,5 @@
 require 'bundler/setup'
 require('riak')
-require('geohash')
 require('./models/zombie')
 
 def load_data(filename)
@@ -10,26 +9,20 @@ def load_data(filename)
 
     file.each_with_index do |line, i|
       fields = line.strip().split(",")
-      zombie = Zombie.new()
+      zombie = Zombie.new(client)
       zombie.from_array(fields)
 
-      city = "#{zombie.data[:city]}, #{zombie.data[:state]}"
-      city_3 = city[0, 3]
-      geohash = GeoHash.encode(zombie.data[:latitude].to_f, zombie.data[:longitude].to_f, 1)[0, 4]
-
-      riak_obj = client['zombies'].new(zombie.data[:ssn])
-      riak_obj.data = zombie.data
-      riak_obj.indexes['zip_bin'] << zombie.data[:zip]
-      riak_obj.indexes['zip_inv'] << zombie.data[:zip]
-      riak_obj.indexes['city_inv'] << zombie.data[:city]
-      riak_obj.indexes['geohash_inv'] << geohash
-      riak_obj.store
+      zombie.add_index('zip_bin', zombie.data[:zip])
+      zombie.add_index('zip_inv', zombie.data[:zip])
+      zombie.add_index('city_inv', zombie.data[:city])
+      zombie.add_index('geohash_inv', zombie.geohash(4))
+      zombie.save
 
       # Sibling resolution takes places when index is retrieved. Do periodically to avoid sibling explosion
       if i % 20 == 0
-        client['zombies'].get_index('zip_inv', zombie.data[:zip])
-        client['zombies'].get_index('city_inv', city)
-        client['zombies'].get_index('geohash_inv', geohash)
+        zombie.search_index('zip_inv', zombie.data[:zip])
+        zombie.search_index('city_inv', zombie.citystate)
+        zombie.search_index('geohash_inv', zombie.geohash(4))
       end
 
     end
