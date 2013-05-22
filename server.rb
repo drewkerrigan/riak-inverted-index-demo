@@ -12,7 +12,7 @@ get '/query/:index/:zip' do
   zombie = Zombie.new()
   results = zombie.search_index(params[:index], params[:zip])
 
-  erb :generic_json, :locals => {:json => results.to_json}, :layout => false
+  results.to_json
 end
 
 put '/zombie/:index' do
@@ -30,8 +30,7 @@ get '/query/geo' do
   zombie = Zombie.new()
   zombie.data[:latitude] = params[:lat].to_f
   zombie.data[:longitude] = params[:lon].to_f
-
   results = zombie.search_index('geohash_inv', zombie.geohash(4))
 
-  erb :generic_json, :locals => {:json => results.to_json}, :layout => false
+  results.to_json
 end
