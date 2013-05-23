@@ -14,7 +14,7 @@ def load_data(filename)
 
       zombie.add_index('zip_bin', zombie.data[:zip])
       zombie.add_index('zip_inv', zombie.data[:zip])
-      zombie.add_index('city_inv', zombie.data[:city])
+      zombie.add_index('city_inv', zombie.citystate)
       zombie.add_index('geohash_inv', zombie.geohash(4))
       zombie.save
 
