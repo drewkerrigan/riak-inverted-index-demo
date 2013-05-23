@@ -28,6 +28,7 @@ Potential Use Cases:
 - Reference all orders belonging to a customer
 - Save the users who "liked" something
 - Tag content in a Content Management System
+- Store a Geo Hash of a specific length for fast 
 
 Implementation:
 
