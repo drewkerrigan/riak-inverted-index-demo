@@ -15,6 +15,15 @@ get '/query/:index/:zip' do
   results.to_json
 end
 
+get '/query/geo' do
+  zombie = Zombie.new()
+  zombie.data[:latitude] = params[:lat].to_f
+  zombie.data[:longitude] = params[:lon].to_f
+  results = zombie.search_index('geohash_inv', zombie.geohash(4))
+
+  results.to_json
+end
+
 put '/zombie/:index' do
   data = JSON.parse(request.body.read)
 
@@ -23,14 +32,5 @@ put '/zombie/:index' do
   zombie.add_index(params[:index], zombie.data[:zip])
   zombie.save()
 
-  status 204
-end
-
-get '/query/geo' do
-  zombie = Zombie.new()
-  zombie.data[:latitude] = params[:lat].to_f
-  zombie.data[:longitude] = params[:lon].to_f
-  results = zombie.search_index('geohash_inv', zombie.geohash(4))
-
-  results.to_json
+  nil
 end
