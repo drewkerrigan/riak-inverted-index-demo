@@ -143,8 +143,8 @@ bench = Bench.new(bucket_name, index_name)
 
 bench.run_test(puts, gets, duration, default_index_value)
 
-get_stats = ['get'] + bench.get_stats.stats.map {|value| '%.2f' % round(value, 2) }
-put_stats = ['put'] + bench.put_stats.stats.map {|value| '%.2f' % round(value, 2) }
+get_stats = ['get'] + bench.get_stats.stats.map {|value| '%.2f' % value }
+put_stats = ['put'] + bench.put_stats.stats.map {|value| '%.2f' % value }
 
 
 puts get_stats.join(',')
