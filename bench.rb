@@ -1,6 +1,6 @@
 require 'bundler/setup'
 require 'riak'
-
+require './riak_hosts'
 require './models/zombie'
 
 class Stat
@@ -71,7 +71,7 @@ class Bench
   attr_accessor :client, :key_count, :bucket_name, :bucket, :index_name, :get_stats, :put_stats
 
   def initialize(bucket_name, index_name)
-    @client = Riak::Client.new(:protocol => 'pbc')
+    @client = RiakHosts.new.get_riak_connection
     @bucket_name = bucket_name
     @bucket = @client[@bucket_name]
     @index_name = index_name
@@ -95,30 +95,36 @@ class Bench
     obj = @bucket.get_index(index, key)
   end
 
-  def run_test(puts, gets, duration)
+  def run_test(puts, gets, duration, default_index_value)
     start = Time.now
 
     @get_stats.start()
     @put_stats.start()
 
+    index_value = default_index_value
+
     # Delta is in seconds
     while (Time.now - start) < duration do
-       (1 .. puts).each do
-         @put_stats.split
-         key = key_count.to_i.to_s
-         #puts 'put', key
-         self.put_with_index(key, @key_count, @index_name, key)
-         @put_stats.split_stop
-       end
-       (1 .. gets).each do
-         @get_stats.split
-         key = rand(@key_count).to_i.to_s
-         #puts 'get', key
-         self.get_with_index(key, @index_name)
-         @get_stats.split_stop
-       end
+      key = key_count.to_i.to_s
+      if !default_index_value.nil?
+        index_value = key
+      end
 
-       @key_count += 1
+      (1 .. puts).each do
+        @put_stats.split
+        #puts 'put', key
+        self.put_with_index(key, @key_count, @index_name, index_value)
+        @put_stats.split_stop
+      end
+      (1 .. gets).each do
+        @get_stats.split
+        index_key = default_index_value.nil? ? rand(@key_count).to_i.to_s : default_index_value
+        #puts 'get', key
+        self.get_with_index(index_key, @index_name)
+        @get_stats.split_stop
+      end
+
+      @key_count += 1
     end
     @get_stats.stop()
     @put_stats.stop()
@@ -131,9 +137,15 @@ gets = ARGV[2].to_i
 puts = ARGV[3].to_i
 duration = ARGV[4].to_i
 
+default_index_value = ARGV[5]
+
 bench = Bench.new(bucket_name, index_name)
 
-bench.run_test(puts, gets, duration)
+bench.run_test(puts, gets, duration, default_index_value)
 
-puts 'Get', bench.get_stats.stats
-puts 'Put', bench.put_stats.stats
+get_stats = ['get'] + bench.get_stats.stats.map {|value| '%.2f' % round(value, 2) }
+put_stats = ['put'] + bench.put_stats.stats.map {|value| '%.2f' % round(value, 2) }
+
+
+puts get_stats.join(',')
+puts put_stats.join(',')

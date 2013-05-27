@@ -12,7 +12,9 @@ class Zombie
     @data = {}
 
     @client = client
-    @client = Riak::Client.new(:protocol => 'pbc') if client.nil?
+    if client.nil?
+      @client = Riak::Client.new(:protocol => 'pbc') if client.nil?
+    end
   end
 
   def search_index(index, query)
@@ -54,7 +56,7 @@ class Zombie
   end
 
   def geohash(precision)
-    GeoHash.encode(@data[:latitude].to_f, @data[:longitude].to_f, 1)[0, precision]
+    GeoHash.encode(@data[:latitude].to_f, @data[:longitude].to_f, precision)[0, precision]
   end
 
   def citystate()

@@ -2,6 +2,9 @@ require 'bundler/setup'
 require 'sinatra'
 require 'geohash'
 require './models/zombie'
+require './riak_hosts'
+
+client = RiakHosts.new().get_riak_connection
 
 # Get
 get '/' do
@@ -9,14 +12,14 @@ get '/' do
 end
 
 get '/query/:index/:zip' do
-  zombie = Zombie.new()
+  zombie = Zombie.new(client)
   results = zombie.search_index(params[:index], params[:zip])
 
   results.to_json
 end
 
 get '/query/geo' do
-  zombie = Zombie.new()
+  zombie = Zombie.new(client)
   zombie.data[:latitude] = params[:lat].to_f
   zombie.data[:longitude] = params[:lon].to_f
   results = zombie.search_index('geohash_inv', zombie.geohash(4))
