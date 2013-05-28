@@ -25,7 +25,7 @@ In the context of Riak, an index is a term that you can query on which reference
 
 ### Metrics:
 
-We wrote a basic ruby script to test creation and retrieval of 2i binary indexes and Inverted Indexes using 1:1, 10:1, and 1:10 Get:Put ratios against and 11 node Riak K/V cluster.  The cluster was cleared of data between each 10 minute run.  The index term was simply a sequential integer converted to a string for the index put and the index term for the index get operation was a randomly selected integer from the term-space that had already been written.
+We wrote a basic ruby script to test creation and retrieval of 2i binary indexes and Inverted Indexes using 1:1, 10:1, and 1:10 Get:Put ratios against and 11 node Riak K/V cluster.  The cluster was cleared of data between each 10 minute run.  The index term was simply a sequential integer converted to a string and the index term for the index get operation was a randomly selected integer from the term-space that had already been written.
 
 Overall, our expecations were fulfilled.  An Inverted Index retrieval is faster than a 2i retrieval and a 2i store is faster than a Inverted Index store.
 
