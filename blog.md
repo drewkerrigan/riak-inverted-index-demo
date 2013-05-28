@@ -62,7 +62,7 @@ In the Ruby Client, the InvertedIndex class (4) handles bucket creation index pu
 
 The Zombie infestation has taken hold in the United States.  The CDC has collected first 1 million of the casualties and has enlisted your assistance loading the data into their Riak cluster and analyzing the results.
 
-To provide ground teams with fast access to the data we've developed a web application (6) and loaded loaded the data into Riak using Inverted Indexes for both the Zip code and a GeoHash (7) for fast geographic lookups.
+To provide ground teams with fast access to the data we've developed a web application (6) and loaded the data into Riak using Inverted Indexes for both the Zip code and a GeoHash (7) for fast geographic lookups.
 
 ##### The application allows users to Search with Zip-code or click on the Map:
 ![image](blog_resources/ZombieSearch.png)
