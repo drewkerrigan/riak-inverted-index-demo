@@ -105,16 +105,18 @@ class Bench
 
     # Delta is in seconds
     while (Time.now - start) < duration do
-      key = key_count.to_i.to_s
-      if !default_index_value.nil?
-        index_value = key
-      end
-
       (1 .. puts).each do
+        key = key_count.to_i.to_s
+        if default_index_value.nil?
+          index_value = key
+        end
+
         @put_stats.split
         #puts 'put', key
         self.put_with_index(key, @key_count, @index_name, index_value)
         @put_stats.split_stop
+
+        @key_count += 1
       end
       (1 .. gets).each do
         @get_stats.split
@@ -123,8 +125,6 @@ class Bench
         self.get_with_index(index_key, @index_name)
         @get_stats.split_stop
       end
-
-      @key_count += 1
     end
     @get_stats.stop()
     @put_stats.stop()
