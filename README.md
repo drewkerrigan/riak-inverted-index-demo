@@ -15,6 +15,12 @@ Install gems required by this application
 bundle install
 ```
 
+#Load some Zombie data
+
+```
+ruby load_data.rb data.csv
+```
+
 #Starting the Server
 
 ```
