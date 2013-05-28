@@ -31,8 +31,6 @@ Overall, our expecations were fulfilled.  An Inverted Index retrieval is faster 
 
 ![image](blog_resources/BenchMetrics.png)
 
-# !!! Put in Metrics data
-
 ### Potential Use Cases:
 
 - Reference all orders belonging to a customer
