@@ -19,7 +19,7 @@ In the context of Riak, an index is a term that you can query on which reference
 
 - Indexes could potentially grow to very large sizes, necessitating index partitioning which adds to implementation complexity and total operation count.
 - In this basic implementation, siblings are only merged when an index retrieval operation takes place. Low cardinality in the index term-space results in a potentially large number of siblings between reads which will cause a high latency when a read does eventually occur.
-- 2i Binary Indexes allow searching based on part of a 2i value and 2i Integer Indexes allow searching based on a range or 2i Values however Key searching is not possible without the use of Map Reduce jobs.  A viable strategy is to create indexes which point to the terms of other indexes.  An example would be City_3 (containing the first 3 letters of a City, State combination) index which points to the City index, an index referring the values which have a particular City, State.
+- 2i allows for some basic searching (integer ranges, exact match) and a few built in Map/Reduce facilities.  Our implemenation for Inverted Index offers nothing but exact match searching.  A viable strategy that incorporates Inverted Indexes would be to create partial term indexes which point to the terms of other indexes.  An example would be City_3 (containing the first 3 letters of a City, State combination) index which points to the City index, an index referring the values which have a particular City, State.
 - Less ideal for write heavy applications since for each index, and additional put operation is required so to store 1 Riak Object with 3 indexes, a total of 4 puts are required.
 
 ### Metrics:
