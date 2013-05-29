@@ -30,7 +30,7 @@ end
 put '/zombie/:index' do
   data = JSON.parse(request.body.read)
 
-  zombie = Zombie.new()
+  zombie = Zombie.new(client)
   zombie.from_hash(data)
   zombie.add_index(params[:index], zombie.data[:zip])
   zombie.save()

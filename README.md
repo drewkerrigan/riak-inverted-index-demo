@@ -24,5 +24,5 @@ ruby load_data.rb data.csv
 #Starting the Server
 
 ```
-ruby server.rb
+bundle exec unicorn -c unicorn.rb -l 0.0.0.0:8080
 ```
