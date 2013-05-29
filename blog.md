@@ -47,7 +47,7 @@ The lower latency of a term-based inverted index retrieval is even more compelli
 
 ### Implementation:
 
-We implemented our Term Based Inverted Index as a CRDT G-Set (Grow only Set) and added the index logic into Riak Ruby Client (3) so that adding a Term Based Inverted Index is as easy as adding a 2i i.e., {INDEX_NAME}\_bin for a binary 2i and {INDEX_NAME}\_inv for an inverted index. Our implemenation also relies on the sibling semantics present within Riak.
+We implemented our Term Based Inverted Index as a CRDT G-Set (Grow only Set) and added the index logic into Riak Ruby Client (3) so that adding a Term Based Inverted Index is as easy as adding a 2i i.e., {INDEX_NAME}\_bin for a binary 2i and {INDEX_NAME}\_inv for an inverted index. Our implemenation relies on the sibling semantics present within Riak.
 
 In the Ruby Client, the InvertedIndex class (4) handles bucket creation index put and get operations as well as sibling resolution.  The GSet class (5) has the actual CRDT GSet implementation which is just a thin facade on top of a Ruby Set data type with some serialization and merge provisions.  The only performance specific optimization that we made from the client defaults was to disable the Riak Object return when storing the index within Riak.  When the number of siblings accumulated during a data load, due to sibling resolution only taking place on an index retrieval, the index put operation time would increase since all siblings were being returned to the client. 
 
