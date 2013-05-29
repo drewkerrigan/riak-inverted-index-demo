@@ -12,7 +12,7 @@ In the context of Riak, an index is a term that you can query on which reference
 - Inverted Indexes can be implemented on any backend, including Bitcask and Memory, but Secondary Indexes can only be used with the LevelDB backend.
 - Use of siblings and sibling resolution is accepted as the correct way to handle issues surrounding distributed data storage.  See Aphyr's Call Me Maybe (1) series of blog posts for a thorough discussion of issues.
 - Since this implementation of an Inverted Index is built on top of a CRDT (2), the sibling resolution strategy is deterministic and built into the implementation.
-- 2i has overhead, that Inverted Indexes do not, which needs to be considered when planning large Riak clusters with more than 512 partitions.
+- 2i queries involved a coverage query against all nodes which may hold the index (the n value of your bucket/object). This overhead increases query latency and the situation exacerbates itself when the ring size of the cluster is increased since the number of nodes which could possibly hold your data increases.  Retrieval of a Term-based Inverted Index only involves a get operation that doesn't have the same overhead drawbacks as 2i.
 - Ideal for read-heavy applications since Inverted Index retrieval is simply an additional Riak Get operation.
 
 #### Cons: 
