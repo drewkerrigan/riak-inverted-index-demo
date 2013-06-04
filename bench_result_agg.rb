@@ -1,6 +1,6 @@
 
 def parse_filename(filename)
-  parts = filename.split('.')[0].split('_')
+  parts = filename.split('.')[0].split('-')
   if parts.length == 6
     backend, bucket, index, gets, puts, duration = parts
     index_term = 'random'

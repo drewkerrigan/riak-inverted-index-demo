@@ -69,6 +69,6 @@ class Zombie
 
   def save()
     @robject.data = @data
-    @robject.store
+    @robject.store(options={:returnbody => false})
   end
 end

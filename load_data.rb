@@ -19,12 +19,6 @@ def load_data(filename)
       zombie.add_index('geohash_inv', zombie.geohash(4))
       zombie.save
 
-      ## Sibling resolution takes places when index is retrieved. Do periodically to avoid sibling explosion
-      #if i % 20 == 0
-      #  zombie.search_index('zip_inv', zombie.data[:zip])
-      #  zombie.search_index('geohash_inv', zombie.geohash(4))
-      #end
-
     end
   end
 end
