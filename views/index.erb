@@ -14,10 +14,15 @@
       </select>
     </div>
   </div>
-
-  <label for="zip_input">Zip: </label> <input type="text" id="zip_input" name="zip" class="input-medium search-query" value="39201" />
-  <button type="submit" class="btn">Find Zombies</button>
+  <div class="ui-widget">
+    <label for="zip_input">Zip: </label> <input id="zip_input" value="39201" />
+    <button type="submit" class="btn">Find Zombies</button>
+  </div>
 </form>
+
+<div class="alert" id="alert">
+  <strong>No zombies found but the contagion is spreading quickly!</strong>
+</div>
 
 <div class="well" id="map-canvas"></div>
 

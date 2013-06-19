@@ -1,17 +1,43 @@
 var map;
 var markersArray = [];
 
-$(function() {
+$("#alert").hide();
 
+// Wire Submit button
+$(function() {
     $('#query-form').submit(function() {
         $.ajax({url:'/query/' + $('#index_select').val() + '/' + $('#zip_input').val(), dataType:"json"}).done(function(data) {
-//            $('#query-results').html(data);
-            populateTable(data);
-            addZombies(data);
+            if (data.length > 0) {
+                populateTable(data);
+                addZombies(data);
+                $("#alert").hide();
+            } else {
+                $("#alert").show();
+            }
         });
 
         return false;
     });
+});
+
+// Autocomplete for zip field
+$("#zip_input").autocomplete({
+    source: function (request, response) {
+        $.ajax({
+            url:"/query/zip3/" + request.term,
+            dataType:"json",
+            success: function(data) {
+                response($.map(data, function(item) { return {label: item, value: item}}) )
+            }
+        });
+    },
+    minLength: 3,
+    open: function() {
+        $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+    },
+    close: function() {
+        $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+    }
 });
 
 function initialize() {
@@ -32,8 +58,14 @@ function getZombies(latLng) {
     lat = latLng.lat();
     lon = latLng.lng();
     $.ajax({url:"/query/geo?lat=" + lat + "&lon=" + lon, dataType:"json"}).done(function (data) {
-        populateTable(data);
-        addZombies(data);
+        if (data.length > 0) {
+            populateTable(data);
+            addZombies(data);
+            $("#alert").hide();
+        } else {
+            clearOverlays();
+            $("#alert").show();
+        }
     });
 }
 
@@ -127,5 +159,4 @@ function deleteOverlays() {
         markersArray.length = 0;
     }
 }
-
 google.maps.event.addDomListener(window, 'load', initialize);

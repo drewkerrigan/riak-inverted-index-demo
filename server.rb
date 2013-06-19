@@ -1,14 +1,31 @@
 require 'bundler/setup'
 require 'sinatra'
 require 'geohash'
+require 'riak_crdts'
 require './models/zombie'
 require './riak_hosts'
 
 client = RiakHosts.new().get_riak_connection
+zip3_idx = RiakCrdts::InvertedIndex.new(client, 'zip3_inv')
 
 # Get
 get '/' do
   erb :index
+end
+
+get '/query/zip3/:zip' do
+
+  zip = params[:zip]
+  zip3 = zip[0, 3]
+
+  zips = zip3_idx.get_index(zip3)
+  results = zips.members.to_a
+
+  if zip.length > 3
+    results = results.select { |item| item.start_with? zip  }
+  end
+
+  return results.sort.to_json
 end
 
 get '/query/:index/:zip' do
