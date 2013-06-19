@@ -127,7 +127,8 @@ function addZombies(zombies) {
 function addMarker(location) {
     marker = new google.maps.Marker({
         position: location,
-        map: map
+        map: map,
+        icon:"img/zombie-outbreak1.png"
     });
     markersArray.push(marker);
 }
