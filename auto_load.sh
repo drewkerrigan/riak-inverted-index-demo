@@ -13,7 +13,7 @@ split -l $split_count $data_file $split_prefix
 for f in ${split_prefix}*
 do
   cd $script_dir
-  ruby load_data.rb $f &
+  nohup ruby load_data.rb $f &
   cd -
 done
 
