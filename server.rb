@@ -44,13 +44,13 @@ get '/query/geo' do
   results.to_json
 end
 
-put '/zombie/:index' do
-  data = JSON.parse(request.body.read)
-
-  zombie = Zombie.new(client)
-  zombie.from_hash(data)
-  zombie.add_index(params[:index], zombie.data[:zip])
-  zombie.save()
-
-  nil
-end
+#put '/zombie/:index' do
+#  data = JSON.parse(request.body.read)
+#
+#  zombie = Zombie.new(client)
+#  zombie.from_hash(data)
+#  zombie.add_index(params[:index], zombie.data[:zip])
+#  zombie.save()
+#
+#  nil
+#end
