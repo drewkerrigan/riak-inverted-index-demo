@@ -16,3 +16,5 @@ do
   ruby load_data.rb $f &
   cd -
 done
+
+touch dataloaded.txt
