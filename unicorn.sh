@@ -13,7 +13,20 @@
 #
 # /etc/init.d/unicorn start /etc/unicorn/my_app.conf
 
+
 set -e
+
+status () {
+  if pgrep -f unicorn.rb > /dev/null; then
+      echo "Running"
+      exit 0
+  else
+      echo "Stopped"
+      exit 3
+  fi
+
+
+}
 
 sig () {
   test -s "$PID" && kill -$1 `cat "$PID"`
@@ -29,7 +42,10 @@ cmd () {
     start)
       sig 0 && echo >&2 "Already running" && exit 0
       echo "Starting"
-      $CMD
+      $CMD &
+      ;;
+    status)
+      status
       ;;
     stop)
       sig QUIT && echo "Stopping" && exit 0
@@ -62,11 +78,10 @@ cmd () {
 
 setup () {
 
-  echo -n "$APPLICATION_ROOT: "
+  #echo -n "$APPLICATION_ROOT: "
   cd $APPLICATION_ROOT || exit 1
   export PID=$APPLICATION_ROOT/log/app.pid
   export OLD_PID="$PID.oldbin"
-
   CMD="bundle exec unicorn -c unicorn.rb -l 0.0.0.0:8080"
 }
 
