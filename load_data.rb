@@ -5,14 +5,24 @@ require('./riak_hosts')
 require('./models/zombie')
 
 def load_data(filename)
-
+  logname = "load_progress.txt"
   #client = Riak::Client.new(:protocol => 'pbc')
   client = RiakHosts.new.get_riak_connection
   zip3 = RiakCrdts::InvertedIndex.new(client, 'zip3_inv')
+  log = File.open(logname, "a+")
+  target_i = -1
+  i = 0
+
+  if log.size > 0
+    target_i = `tail -n 1 #{logname}`.to_i
+  end
 
   File.open(filename) do |file|
 
     file.each_with_index do |line, i|
+      i+=1
+      next if i <= target_i
+
       fields = line.strip().split(",")
       zombie = Zombie.new(client)
       zombie.from_array(fields)
@@ -26,8 +36,11 @@ def load_data(filename)
       zombie.add_index('geohash_inv', zombie.geohash(4))
       zombie.save
 
+      log.write(i.to_s + "\n")
     end
   end
+
+  log.close unless log == nil
 end
 
 filename = ARGV[0]
