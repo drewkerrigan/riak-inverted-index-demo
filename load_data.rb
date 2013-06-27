@@ -14,7 +14,7 @@ def load_data(filename)
   i = 0
 
   if log.size > 0
-    target_i = `tail -n 1 #{logname}`.to_i
+    target_i = `tail -n 1 #{logname}`.split(",")[1].to_i
   end
 
   File.open(filename) do |file|
@@ -36,7 +36,7 @@ def load_data(filename)
       zombie.add_index('geohash_inv', zombie.geohash(4))
       zombie.save
 
-      log.write(i.to_s + "\n")
+      log.write(Time.now.to_s + "," + i.to_s + "," + ((i / 1000000.0) * 100.0).round(3).to_s + "%\n")
     end
   end
 
