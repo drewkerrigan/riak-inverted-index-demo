@@ -29,17 +29,23 @@ get '/query/zip3/:zip' do
 end
 
 get '/query/:index/:zip' do
+  start = (params.keys.include?('start')) ? params[:start] : 1
+  #Don't expose count
+  #count = (params.key.include?('count')) ? params[:count] : 50
   zombie = Zombie.new(client)
-  results = zombie.search_index(params[:index], params[:zip])
+  results = zombie.search_index(params[:index], params[:zip], start.to_i)
 
   results.to_json
 end
 
 get '/query/geo' do
+  start = (params.key.include?('start')) ? params[:start] : 1
+  #Don't expose count
+  #count = (params.key.include?('count')) ? params[:count] : 50
   zombie = Zombie.new(client)
   zombie.data[:latitude] = params[:lat].to_f
   zombie.data[:longitude] = params[:lon].to_f
-  results = zombie.search_index('geohash_inv', zombie.geohash(4))
+  results = zombie.search_index('geohash_inv', zombie.geohash(4), start.to_i)
 
   results.to_json
 end

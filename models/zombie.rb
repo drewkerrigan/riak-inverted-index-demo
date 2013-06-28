@@ -17,14 +17,14 @@ class Zombie
     end
   end
 
-  def search_index(index, query, start = 0, count = 100)
+  def search_index(index, query, start = 1, count = 5)
     zombies = []
     results = @client['zombies'].get_index(index, query)
     unless results == false
-      result_count = 0
-      for zombie_key in results
-        break if result_count >= count
-        next if result_count < start
+      result_count = 1
+      results.each_with_index do |zombie_key, i|
+        break if result_count > count
+        next if (i + 1) < start
 
         data = @client['zombies'].get(zombie_key).data
         data["dna"] = data["dna"][0..20] + "..."
@@ -34,6 +34,8 @@ class Zombie
     end
 
     return {
+        :start => start,
+        :pages => (Float(results.count) / Float(count)).ceil,
         :total_count => results.count,
         :count => zombies.count,
         :zombies => zombies
