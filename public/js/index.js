@@ -7,7 +7,7 @@ $("#alert").hide();
 $(function() {
     $('#query-form').submit(function() {
         $.ajax({url:'/query/' + $('#index_select').val() + '/' + $('#zip_input').val(), dataType:"json"}).done(function(data) {
-            if (data.length > 0) {
+            if (data.zombies.length > 0) {
                 populateTable(data);
                 addZombies(data);
                 $("#alert").hide();
@@ -58,7 +58,7 @@ function getZombies(latLng) {
     lat = latLng.lat();
     lon = latLng.lng();
     $.ajax({url:"/query/geo?lat=" + lat + "&lon=" + lon, dataType:"json"}).done(function (data) {
-        if (data.length > 0) {
+        if (data.zombies.length > 0) {
             populateTable(data);
             addZombies(data);
             $("#alert").hide();
@@ -81,7 +81,7 @@ function populateTable(data) {
     });
     header_row.appendTo($('#query_results'));
 
-    $.each(data, function(i, row) {
+    $.each(data.zombies, function(i, row) {
         $('#query_results')
             .append($('<tr>')
                 .append($('<td>').text(row['dna'].substring(0, 10) + "..."))
@@ -103,13 +103,13 @@ function populateTable(data) {
     });
 }
 
-function addZombies(zombies) {
+function addZombies(data) {
     clearOverlays();
 
     var boundsChanged = false;
     var bounds = new google.maps.LatLngBounds();
 
-    $.each(zombies, function() {
+    $.each(data.zombies, function() {
         lat = parseFloat(this['latitude']);
         lon = parseFloat(this['longitude']);
 

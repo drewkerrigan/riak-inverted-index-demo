@@ -26,12 +26,18 @@ class Zombie
         break if result_count >= count
         next if result_count < start
 
-        zombies << @client['zombies'].get(zombie_key).data
+        data = @client['zombies'].get(zombie_key).data
+        data["dna"] = data["dna"][0..20] + "..."
+        zombies << data
         result_count+=1
       end
     end
 
-    return zombies
+    return {
+        :total_count => results.count,
+        :count => zombies.count,
+        :zombies => zombies
+    }
   end
 
   def create_robject()
