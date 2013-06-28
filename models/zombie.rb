@@ -17,12 +17,17 @@ class Zombie
     end
   end
 
-  def search_index(index, query)
+  def search_index(index, query, start = 0, count = 100)
     zombies = []
     results = @client['zombies'].get_index(index, query)
     unless results == false
+      result_count = 0
       for zombie_key in results
+        break if result_count >= count
+        next if result_count < start
+
         zombies << @client['zombies'].get(zombie_key).data
+        result_count+=1
       end
     end
 
