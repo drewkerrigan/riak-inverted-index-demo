@@ -17,7 +17,7 @@ class Zombie
     end
   end
 
-  def search_index(index, query, start = 1, count = 5)
+  def search_index(index, query, start = 1, count = 50)
     zombies = []
     results = @client['zombies'].get_index(index, query)
     unless results == false
@@ -33,9 +33,16 @@ class Zombie
       end
     end
 
+    pages = (Float(results.count) / Float(count)).ceil
+
     return {
         :start => start,
-        :pages => (Float(results.count) / Float(count)).ceil,
+        :pages => pages,
+        :current_page => ((Float(start) / Float(results.count)) * Float(pages)).ceil,
+        :next_index => ((start + count) > results.count) ?
+            ((pages - 1) * count + 1) : (start + count),
+        :prev_index => (start == 1) ? 1 : start - count,
+        :increment => count,
         :total_count => results.count,
         :count => zombies.count,
         :zombies => zombies

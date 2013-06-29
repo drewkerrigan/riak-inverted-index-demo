@@ -95,16 +95,22 @@ function populateTable(data) {
     // Pagination
     if(data.total_count > data.count) {
         $('#pagination').append($('<ul>').append($('<li/>')
-            .html('<a href="#" onclick="getZombies(' + (start - data.count) + ')>Prev</a>')));
+            .html('<a href="#" onclick="getZombies(' + data.prev_index + ')">Prev</a>')));
 
         for (var i=1;i<=data.pages;i++)
         {
-            $('<li/>').appendTo('#pagination ul')
-                .html('<a href="#" onclick="getZombies(' + ((i - 1) * data.count + 1) + ')">' + i + '</a>');
+            if (data.current_page == i) {
+                active = 'class="active"'
+            } else {
+                active = ''
+            }
+
+            $('<li ' + active + '/>').appendTo('#pagination ul')
+                .html('<a href="#" onclick="getZombies(' + ((i - 1) * data.increment + 1) + ')">' + i + '</a>');
         }
 
         $('<li/>').appendTo('#pagination ul')
-            .html('<a href="#" onclick="getZombies(' + (start + data.count) + ')>Next</a>');
+            .html('<a href="#" onclick="getZombies(' + data.next_index + ')">Next</a>');
         $('<p/>').appendTo('#pagination')
             .html('Showing zombies ' + data.start + '-' + (data.start + data.count - 1) + ' of ' + data.total_count);
     }

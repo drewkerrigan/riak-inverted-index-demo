@@ -39,7 +39,7 @@ get '/query/:index/:zip' do
 end
 
 get '/query/geo' do
-  start = (params.key.include?('start')) ? params[:start] : 1
+  start = (params.keys.include?('start')) ? params[:start] : 1
   #Don't expose count
   #count = (params.key.include?('count')) ? params[:count] : 50
   zombie = Zombie.new(client)
