@@ -1,24 +1,74 @@
 var map;
 var markersArray = [];
+var start = 1;
+var lat = 0;
+var lon = 0;
+var method = "zip";
 
-$("#alert").hide();
+function initialize() {
+    $("#alert").hide();
 
-// Wire Submit button
-$(function() {
+    var groundZero = new google.maps.LatLng(38.956160, -77.397262);
+    var mapOptions = {
+        zoom: 15,
+        center: groundZero,
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+    };
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    google.maps.event.addListener(map, 'click', function(event) {
+        lat = event.latLng.lat();
+        lon = event.latLng.lng();
+        method = "latlng";
+        getZombies(1);
+    });
+
     $('#query-form').submit(function() {
-        $.ajax({url:'/query/' + $('#index_select').val() + '/' + $('#zip_input').val(), dataType:"json"}).done(function(data) {
-            if (data.length > 0) {
-                populateTable(data);
-                addZombies(data);
-                $("#alert").hide();
-            } else {
-                $("#alert").show();
-            }
-        });
-
+        method = "zip";
+        getZombies(1);
         return false;
     });
-});
+}
+
+function getZombies(index) {
+    start = index;
+    if (method == "zip") {
+        queryZip();
+    } else {
+        queryLatlng();
+    }
+
+    return false;
+}
+
+function queryZip() {
+    $("#loading").show();
+    $.ajax({url:'/query/' + $('#index_select').val() + '/' + $('#zip_input').val() + '?start=' + start, dataType:"json"}).done(function(data) {
+        $("#loading").hide();
+        if (data.zombies.length > 0) {
+            populateTable(data);
+            addZombies(data);
+            $("#alert").hide();
+        } else {
+            $("#alert").show();
+        }
+    });
+}
+
+function queryLatlng() {
+    $("#loading").show();
+    $.ajax({url:"/query/geo?lat=" + lat + "&lon=" + lon + "&start=" + start, dataType:"json"}).done(function (data) {
+        $("#loading").hide();
+        if (data.zombies.length > 0) {
+            populateTable(data);
+            addZombies(data);
+            $("#alert").hide();
+        } else {
+            clearOverlays();
+            $("#alert").show();
+        }
+    });
+}
 
 // Autocomplete for zip field
 $("#zip_input").autocomplete({
@@ -40,38 +90,36 @@ $("#zip_input").autocomplete({
     }
 });
 
-function initialize() {
-    var groundZero = new google.maps.LatLng(38.956160, -77.397262);
-    var mapOptions = {
-        zoom: 15,
-        center: groundZero,
-        mapTypeId: google.maps.MapTypeId.TERRAIN
-    };
-    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-    google.maps.event.addListener(map, 'click', function(event) {
-        getZombies(event.latLng);
-    });
-}
-
-function getZombies(latLng) {
-    lat = latLng.lat();
-    lon = latLng.lng();
-    $.ajax({url:"/query/geo?lat=" + lat + "&lon=" + lon, dataType:"json"}).done(function (data) {
-        if (data.length > 0) {
-            populateTable(data);
-            addZombies(data);
-            $("#alert").hide();
-        } else {
-            clearOverlays();
-            $("#alert").show();
-        }
-    });
-}
-
 function populateTable(data) {
     $('#query_results').empty();
+    $('#pagination').empty();
 
+    //TODO: finish prev and next
+
+    // Pagination
+    if(data.total_count > data.zombies.length) {
+        $('#pagination').append($('<ul>').append($('<li/>')
+            .html('<a href="#" onclick="getZombies(' + data.prev_index + ')">Prev</a>')));
+
+        for (var i=1;i<=data.pages;i++)
+        {
+            if (data.current_page == i) {
+                active = 'class="active"'
+            } else {
+                active = ''
+            }
+
+            $('<li ' + active + '/>').appendTo('#pagination ul')
+                .html('<a href="#" onclick="getZombies(' + ((i - 1) * data.increment + 1) + ')">' + i + '</a>');
+        }
+
+        $('<li/>').appendTo('#pagination ul')
+            .html('<a href="#" onclick="getZombies(' + data.next_index + ')">Next</a>');
+        $('<p/>').appendTo('#pagination')
+            .html('Showing zombies ' + data.start + '-' + (data.start + data.zombies.length - 1) + ' of ' + data.total_count);
+    }
+
+    // Table
     var header = ['dna','sex','name','address','city','state','zip','phone',
         'birthdate','ssn','job','bloodtype','weight','height'];
 
@@ -81,7 +129,7 @@ function populateTable(data) {
     });
     header_row.appendTo($('#query_results'));
 
-    $.each(data, function(i, row) {
+    $.each(data.zombies, function(i, row) {
         $('#query_results')
             .append($('<tr>')
                 .append($('<td>').text(row['dna'].substring(0, 10) + "..."))
@@ -103,13 +151,13 @@ function populateTable(data) {
     });
 }
 
-function addZombies(zombies) {
+function addZombies(data) {
     clearOverlays();
 
     var boundsChanged = false;
     var bounds = new google.maps.LatLngBounds();
 
-    $.each(zombies, function() {
+    $.each(data.zombies, function() {
         lat = parseFloat(this['latitude']);
         lon = parseFloat(this['longitude']);
 

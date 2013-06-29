@@ -17,12 +17,15 @@
   <div class="ui-widget">
     <label for="zip_input">Zip: </label> <input id="zip_input" value="39201" />
     <button type="submit" class="btn">Find Zombies</button>
+    <img src="/img/loading.gif" width="32px" height="32px" id="loading" style="display:none;" />
   </div>
 </form>
 
 <div class="alert" id="alert">
   <strong>No zombies found but the contagion is spreading quickly!</strong>
 </div>
+
+<div class="pagination" id="pagination"></div>
 
 <div class="well" id="map-canvas"></div>
 
