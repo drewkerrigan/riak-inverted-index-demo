@@ -17,36 +17,48 @@ class Zombie
     end
   end
 
-  def search_index(index, query, start = 1, count = 50)
+  def fetch_with_pagination(keys, start = 1, count = 50)
     zombies = []
-    results = @client['zombies'].get_index(index, query)
-    unless results == false
-      result_count = 1
-      results.each_with_index do |zombie_key, i|
-        break if result_count > count
-        next if (i + 1) < start
+    keys = [] unless keys
 
-        data = @client['zombies'].get(zombie_key).data
-        data["dna"] = data["dna"][0..20] + "..."
-        zombies << data
-        result_count+=1
-      end
+    result_count = 1
+    keys.each_with_index do |zombie_key, i|
+      break if result_count > count
+      next if (i + 1) < start
+
+      data = @client['zombies'].get(zombie_key).data
+      data["dna"] = data["dna"][0..20] + "..."
+      zombies << data
+      result_count+=1
     end
 
-    pages = (Float(results.count) / Float(count)).ceil
+    pages = 0
+    current_page = 0
+    next_index = 0
+    prev_index = 0
 
-    return {
+    if keys.count > 0
+      pages = (Float(keys.count) / Float(count)).ceil
+      current_page = ((Float(start) / Float(keys.count)) * Float(pages)).ceil
+      next_index = ((start + count) > keys.count) ?
+          ((pages - 1) * count + 1) : (start + count)
+      prev_index = (start == 1) ? 1 : start - count
+    end
+
+    {
         :start => start,
         :pages => pages,
-        :current_page => ((Float(start) / Float(results.count)) * Float(pages)).ceil,
-        :next_index => ((start + count) > results.count) ?
-            ((pages - 1) * count + 1) : (start + count),
-        :prev_index => (start == 1) ? 1 : start - count,
+        :current_page => current_page,
+        :next_index => next_index,
+        :prev_index => prev_index,
         :increment => count,
-        :total_count => results.count,
-        :count => zombies.count,
+        :total_count => keys.count,
         :zombies => zombies
     }
+  end
+
+  def search_index(index, query)
+    @client['zombies'].get_index(index, query)
   end
 
   def create_robject()

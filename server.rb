@@ -33,7 +33,8 @@ get '/query/:index/:zip' do
   #Don't expose count
   #count = (params.key.include?('count')) ? params[:count] : 50
   zombie = Zombie.new(client)
-  results = zombie.search_index(params[:index], params[:zip], start.to_i)
+  keys = zombie.search_index(params[:index], params[:zip])
+  results = zombie.fetch_with_pagination(keys, start.to_i)
 
   results.to_json
 end
@@ -45,7 +46,8 @@ get '/query/geo' do
   zombie = Zombie.new(client)
   zombie.data[:latitude] = params[:lat].to_f
   zombie.data[:longitude] = params[:lon].to_f
-  results = zombie.search_index('geohash_inv', zombie.geohash(4), start.to_i)
+  keys = zombie.search_index('geohash_inv', zombie.geohash(4))
+  results = zombie.fetch_with_pagination(keys, start.to_i)
 
   results.to_json
 end
