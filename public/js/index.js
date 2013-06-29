@@ -42,7 +42,9 @@ function getZombies(index) {
 }
 
 function queryZip() {
+    $("#loading").show();
     $.ajax({url:'/query/' + $('#index_select').val() + '/' + $('#zip_input').val() + '?start=' + start, dataType:"json"}).done(function(data) {
+        $("#loading").hide();
         if (data.zombies.length > 0) {
             populateTable(data);
             addZombies(data);
@@ -54,7 +56,9 @@ function queryZip() {
 }
 
 function queryLatlng() {
+    $("#loading").show();
     $.ajax({url:"/query/geo?lat=" + lat + "&lon=" + lon + "&start=" + start, dataType:"json"}).done(function (data) {
+        $("#loading").hide();
         if (data.zombies.length > 0) {
             populateTable(data);
             addZombies(data);
