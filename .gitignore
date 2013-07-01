@@ -1,3 +1,4 @@
 .idea
 Gemfile.lock
 .DS_Store
+load_progress.txt
