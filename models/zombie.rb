@@ -17,16 +17,48 @@ class Zombie
     end
   end
 
-  def search_index(index, query)
+  def fetch_with_pagination(keys, start = 1, count = 50)
     zombies = []
-    results = @client['zombies'].get_index(index, query)
-    unless results == false
-      for zombie_key in results
-        zombies << @client['zombies'].get(zombie_key).data
-      end
+    keys = [] unless keys
+
+    result_count = 1
+    keys.each_with_index do |zombie_key, i|
+      break if result_count > count
+      next if (i + 1) < start
+
+      data = @client['zombies'].get(zombie_key).data
+      data["dna"] = data["dna"][0..20] + "..."
+      zombies << data
+      result_count+=1
     end
 
-    return zombies
+    pages = 0
+    current_page = 0
+    next_index = 0
+    prev_index = 0
+
+    if keys.count > 0
+      pages = (Float(keys.count) / Float(count)).ceil
+      current_page = ((Float(start) / Float(keys.count)) * Float(pages)).ceil
+      next_index = ((start + count) > keys.count) ?
+          ((pages - 1) * count + 1) : (start + count)
+      prev_index = (start == 1) ? 1 : start - count
+    end
+
+    {
+        :start => start,
+        :pages => pages,
+        :current_page => current_page,
+        :next_index => next_index,
+        :prev_index => prev_index,
+        :increment => count,
+        :total_count => keys.count,
+        :zombies => zombies
+    }
+  end
+
+  def search_index(index, query)
+    @client['zombies'].get_index(index, query)
   end
 
   def create_robject()
