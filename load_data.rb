@@ -6,7 +6,6 @@ require('./models/zombie')
 
 def load_data(filename)
   logname = "load_progress.txt"
-  #client = Riak::Client.new(:protocol => 'pbc')
   client = RiakHosts.new.get_riak_connection
   zip3 = RiakCrdts::InvertedIndex.new(client, 'zip3_inv')
   log = File.open(logname, "a+")

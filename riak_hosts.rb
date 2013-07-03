@@ -52,6 +52,6 @@ class RiakHosts
       riak_hosts << riak_host.get_riak_definition
     end
 
-    Riak::Client.new(:nodes => riak_hosts)
+    Riak::Client.new(:nodes => riak_hosts, :protocol => 'pbc')
   end
 end

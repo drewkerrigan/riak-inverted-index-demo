@@ -82,7 +82,7 @@ setup () {
   cd $APPLICATION_ROOT || exit 1
   export PID=$APPLICATION_ROOT/log/app.pid
   export OLD_PID="$PID.oldbin"
-  CMD="bundle exec unicorn -c unicorn.rb -l 0.0.0.0:8080"
+  CMD="bundle exec unicorn -c unicorn.rb -l 0.0.0.0:9292"
 }
 
 start_stop () {
