@@ -5,8 +5,14 @@ require 'riak_crdts'
 require './models/zombie'
 require './riak_hosts'
 
-client = RiakHosts.new().get_riak_connection
-zip3_idx = RiakCrdts::InvertedIndex.new(client, 'zip3_inv')
+
+begin
+  client = RiakHosts.new().get_riak_connection
+  zip3_idx = RiakCrdts::InvertedIndex.new(client, 'zip3_inv')
+rescue Exception => e
+  client = nil
+  zip3_idx = nil
+end
 
 # Get
 get '/' do
