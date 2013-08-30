@@ -1,62 +1,62 @@
 require 'bundler/setup'
 require 'sinatra'
-require 'geohash'
-require 'riak_crdts'
-require './models/zombie'
-require './riak_hosts'
+#require 'geohash'
+#require 'riak_crdts'
+#require './models/zombie'
+#require './riak_hosts'
 
 
-begin
-  client = RiakHosts.new().get_riak_connection
-  zip3_idx = RiakCrdts::InvertedIndex.new(client, 'zip3_inv')
-rescue Exception => e
-  client = nil
-  zip3_idx = nil
-end
+#begin
+#  client = RiakHosts.new().get_riak_connection
+#  zip3_idx = RiakCrdts::InvertedIndex.new(client, 'zip3_inv')
+#rescue Exception => e
+#  client = nil
+#  zip3_idx = nil
+#end
 
 # Get
 get '/' do
   erb :index
 end
 
-get '/query/zip3/:zip' do
-
-  zip = params[:zip]
-  zip3 = zip[0, 3]
-
-  zips = zip3_idx.get_index(zip3)
-  results = zips.members.to_a
-
-  if zip.length > 3
-    results = results.select { |item| item.start_with? zip  }
-  end
-
-  return results.sort.to_json
-end
-
-get '/query/:index/:zip' do
-  start = (params.keys.include?('start')) ? params[:start] : 1
-  #Don't expose count
-  #count = (params.key.include?('count')) ? params[:count] : 50
-  zombie = Zombie.new(client)
-  keys = zombie.search_index(params[:index], params[:zip])
-  results = zombie.fetch_with_pagination(keys, start.to_i)
-
-  results.to_json
-end
-
-get '/query/geo' do
-  start = (params.keys.include?('start')) ? params[:start] : 1
-  #Don't expose count
-  #count = (params.key.include?('count')) ? params[:count] : 50
-  zombie = Zombie.new(client)
-  zombie.data[:latitude] = params[:lat].to_f
-  zombie.data[:longitude] = params[:lon].to_f
-  keys = zombie.search_index('geohash_inv', zombie.geohash(4))
-  results = zombie.fetch_with_pagination(keys, start.to_i)
-
-  results.to_json
-end
+#get '/query/zip3/:zip' do
+#
+#  zip = params[:zip]
+#  zip3 = zip[0, 3]
+#
+#  zips = zip3_idx.get_index(zip3)
+#  results = zips.members.to_a
+#
+#  if zip.length > 3
+#    results = results.select { |item| item.start_with? zip  }
+#  end
+#
+#  return results.sort.to_json
+#end
+#
+#get '/query/:index/:zip' do
+#  start = (params.keys.include?('start')) ? params[:start] : 1
+#  #Don't expose count
+#  #count = (params.key.include?('count')) ? params[:count] : 50
+#  zombie = Zombie.new(client)
+#  keys = zombie.search_index(params[:index], params[:zip])
+#  results = zombie.fetch_with_pagination(keys, start.to_i)
+#
+#  results.to_json
+#end
+#
+#get '/query/geo' do
+#  start = (params.keys.include?('start')) ? params[:start] : 1
+#  #Don't expose count
+#  #count = (params.key.include?('count')) ? params[:count] : 50
+#  zombie = Zombie.new(client)
+#  zombie.data[:latitude] = params[:lat].to_f
+#  zombie.data[:longitude] = params[:lon].to_f
+#  keys = zombie.search_index('geohash_inv', zombie.geohash(4))
+#  results = zombie.fetch_with_pagination(keys, start.to_i)
+#
+#  results.to_json
+#end
 
 #put '/zombie/:index' do
 #  data = JSON.parse(request.body.read)
