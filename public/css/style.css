@@ -208,12 +208,12 @@ body {
 h1 {
 	font-family : 'open_sanssemibold', helvetica, sans-serif;
 	font-size   : 1.85rem;
-	padding     : 0.8em 0 0.25em 0;
-	line-height : 1.25em;
+	padding     : 0.8em 2em 0.25em 2em;
+	line-height : 1.2em;
 }
 
 p {
-	font-size   : 1.5rem;
+	font-size   : 1.3rem;
 	line-height : 1.4em;
 	color       : #616266;
 }
@@ -333,9 +333,9 @@ button {
 }
 
 .box-headline {
-	width      : 594px;
+	width      : 670px;
 	margin     : 0 auto;
-	padding    : 2em 128px 8.3em 128px;
+	padding    : 2em 90px 8.3em 90px;
 	text-align : center;
 }
 
@@ -343,6 +343,7 @@ button {
 	font-family : 'open_sansitalic', helvetica, sans-serif;
 	color       : #e58935;
 	font-size   : 1.3rem;
+  line-height : 1.4em;
 }
 
 .drop-bottom-wrapper {
@@ -770,6 +771,10 @@ and (max-width : 767px)
 and (min-width : 500px) {
 	.headline-wrap { height : 454px !important; }
 	.headline { height: 400px !important; }
+
+  h1 {
+    padding  : 0.8em 0 0.25em 0;
+  }
 }
 
 
