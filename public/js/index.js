@@ -163,6 +163,7 @@ function populateTable(data) {
 
 function addZombies(data) {
     clearOverlays();
+    var infoWindow = new google.maps.InfoWindow({maxWidth: 100});
 
     var boundsChanged = false;
     var bounds = new google.maps.LatLngBounds();
@@ -176,19 +177,33 @@ function addZombies(data) {
         bounds.extend(position);
         boundsChanged = true;
 
-        addMarker(position);
+        addMarker(position, this, infoWindow);
     })
 
     if (boundsChanged) map.fitBounds(bounds);
 }
 
-function addMarker(location) {
+function addMarker(location, data, infoWindow) {
     marker = new google.maps.Marker({
         position: location,
         map: map,
+        title: data['name'],
         icon:"img/zombie-outbreak1.png"
     });
+
     markersArray.push(marker);
+    var text = "<div>" + data['name'] + "</div><div>" + data['address'] + "</div><div>" +
+        data['city'] + ", " + data['state'] + "</div>";
+    createInfoWindow(map, marker, infoWindow, text);
+}
+
+function createInfoWindow(map, marker, infoWindow, text) {
+    var listener = google.maps.event.addListener(marker, 'click', function() {
+       infoWindow.close();
+       infoWindow.setContent(text);
+//       infoWindow.setOptions({content: text, maxWidth: 300});
+       infoWindow.open(map, marker);
+    });
 }
 
 // Removes the overlays from the map, but keeps them in the array
@@ -196,6 +211,7 @@ function clearOverlays() {
     if (markersArray) {
         for (i in markersArray) {
             markersArray[i].setMap(null);
+            google.maps.event.clearInstanceListeners(markersArray[i]);
         }
     }
 }
@@ -211,10 +227,8 @@ function showOverlays() {
 
 // Deletes all markers in the array by removing references to them
 function deleteOverlays() {
+    clearOverlays();
     if (markersArray) {
-        for (i in markersArray) {
-            markersArray[i].setMap(null);
-        }
         markersArray.length = 0;
     }
 }
