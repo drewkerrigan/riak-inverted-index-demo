@@ -1,34 +1,70 @@
-<h1>Zombies...</h1>
-
-<p>There are zombies here</p>
-
-<h1>Query</h1>
-
-<form class="well form-search" id="query-form">
-  <div class="control-group">
-    <label class="control-label" for="select01">Index Method</label>
-    <div class="controls">
-      <select id="index_select">
-        <option value="zip_inv">Term-Based</option>
-        <option value="zip_bin">2i</option>
-      </select>
+<div id="main" class="wrapper">
+  <div class="drop-bottom-wrapper">
+    <div class="drop-bottom-wrapper-inner">
+      <div class="graphic-bashozombie"></div>
+      <div class="drop-bottom">
+        <i class="icon-teardrop-left"></i>
+      </div>
     </div>
   </div>
-  <div class="ui-widget">
-    <label for="zip_input">Zip: </label> <input id="zip_input" value="39201" />
-    <button type="submit" class="btn">Find Zombies</button>
-    <img src="/img/loading.gif" width="32px" height="32px" id="loading" style="display:none;" />
+  <div class="headline-wrap">
+    <div class="headline">
+      <div class="box box-headline">
+        <p>In the United States, the CDC has recovered 1 million Acute Zombilepsy vicitims and has asked for our help loading the data into a Riak cluster for analysis and ground team support.</p>
+        <h1>We need your help to locate the zombies, index them, and save the world.</h1>
+        <a href="http://basho.com/indexing-the-zombie-apocalypse-with-riak">For more details, visit our blog &#187;</a>
+        <div class="drop-bottom-wrapper-mobile">
+          <div class="drop-bottom-wrapper-inner">
+            <div class="graphic-bashozombie"></div>
+            <div class="drop-bottom">
+              <i class="icon-teardrop-left"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</form>
+  <div class="page-contain">
+    <div class="hfeed site" id="page">
+      <div class="site-content" id="primary">
+        <div role="main" id="content">
+          <div class="box box-query">
 
-<div class="alert" id="alert">
-  <strong>No zombies found but the contagion is spreading quickly!</strong>
-</div>
+          <form class="well form-search" id="query-form">
+            <div class="control-group">
+              <label class="control-label" for="select01">Index Method</label>
+              <div class="controls">
+                <select id="index_select">
+                  <option value="zip_inv">Term-Based</option>
+                  <option value="zip_bin">2i</option>
+                </select>
+              </div>
+            </div>
+            <div class="ui-widget">
+              <label for="zip_input">Zip Code</label>
+              <input type="text" id="zip_input" value="39201" />
+            </div>
+            <div class="clear"></div>
+            <div class="loading-row"><img src="/img/loading.gif" width="32px" height="32px" id="loading" style="display:none;" /></div>
+            <div class="query-button-row"><button type="submit" class="btn">Find Zombies</button></div>
+          </form>
 
-<div class="pagination" id="pagination"></div>
+          </div>
 
-<div class="well" id="map-canvas"></div>
+          <div class="alert" id="alert">
+            <strong>No zombies found but the contagion is spreading quickly!</strong>
+          </div>
 
-<div >
-    <table class="table table-striped table-bordered table-condensed" id="query_results"></table>
-</div>
+          <div class="well" id="map-canvas"></div>
+
+          <div class="pagination" id="pagination"></div>
+
+          <div class="table-wrapper">
+              <table class="table table-striped table-bordered table-condensed" id="query_results"></table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- /main -->
