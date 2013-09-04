@@ -53,6 +53,7 @@ function queryZip() {
             addZombies(data);
             $("#alert").hide();
         } else {
+            clearOverlays();
             $("#alert").show();
             $('#query_results').hide();
             $('#pagination').hide();
