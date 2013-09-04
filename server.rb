@@ -25,7 +25,7 @@ get '/query/zip3/:zip' do
     results = results.select { |item| item.start_with? zip  }
   end
 
-  return results.sort.to_json
+  results.sort.to_json
 end
 
 get '/query/:index/:zip' do
@@ -33,6 +33,11 @@ get '/query/:index/:zip' do
   #Don't expose count
   #count = (params.key.include?('count')) ? params[:count] : 50
   zombie = Zombie.new(client)
+
+  #validate index
+  index = params[:index]
+  return 'Invalid index' unless ['zip_inv', 'zip_bin'].include? index
+
   keys = zombie.search_index(params[:index], params[:zip])
   results = zombie.fetch_with_pagination(keys, start.to_i)
 
