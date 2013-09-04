@@ -444,6 +444,7 @@ label {
 
 #map-canvas {
 	margin-top : 25px;
+    margin-bottom : 12.5px;
 	width : 100%;
 }
 
@@ -474,6 +475,7 @@ table {
 
 .table th,
 .table td {
+  font-size: 0.8rem;
   padding: 8px;
   line-height: 20px;
   text-align: left;

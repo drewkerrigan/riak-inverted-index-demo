@@ -7,6 +7,8 @@ var method = "zip";
 
 function initialize() {
     $("#alert").hide();
+    $('#query_results').hide();
+    $('#pagination').hide();
 
     var groundZero = new google.maps.LatLng(38.956160, -77.397262);
     var mapOptions = {
@@ -31,6 +33,7 @@ function initialize() {
 }
 
 function getZombies(index) {
+
     start = index;
     if (method == "zip") {
         queryZip();
@@ -51,6 +54,8 @@ function queryZip() {
             $("#alert").hide();
         } else {
             $("#alert").show();
+            $('#query_results').hide();
+            $('#pagination').hide();
         }
     });
 }
@@ -66,6 +71,8 @@ function queryLatlng() {
         } else {
             clearOverlays();
             $("#alert").show();
+            $('#query_results').hide();
+            $('#pagination').hide();
         }
     });
 }
@@ -93,6 +100,8 @@ $("#zip_input").autocomplete({
 function populateTable(data) {
     $('#query_results').empty();
     $('#pagination').empty();
+    $('#pagination').show();
+    $('#query_results').show();
 
     //TODO: finish prev and next
 
