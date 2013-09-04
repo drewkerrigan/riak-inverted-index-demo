@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="js no-touch csstransforms csstransforms3d csstransitions svg js-ready">
 <head>
   <meta charset="utf-8">
   <title>Riak Inverted Indexes</title>
@@ -10,47 +10,133 @@
 
   <!-- Le styles -->
   <link href="/css/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-  <link href="/css/bootstrap.css" rel="stylesheet">
+  <!--<link href="/css/bootstrap.css" rel="stylesheet">-->
   <link href="/css/map.css" rel="stylesheet">
-  <style>
-      body {
-          padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-      #map-canvas {
-          width: 96%;
-      }
-      #map-canvas img {
-          max-width: none;
-      }
-  </style>
-  <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <!--<link href="/css/bootstrap-responsive.css" rel="stylesheet">-->
 </head>
 
 <body>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="brand" href="/">Riak Inverted Indexes</a>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-          <li class="active"><a href="/">Home</a></li>
-        </ul>
-      </div><!--/.nav-collapse -->
-    </div>
-  </div>
+<a name="top" id="top"></a>
+
+<div id="outer-wrap">
+  <div id="inner-wrap">
+
+<div id="site-navigation" role="navigation">
+              <div class="main-navigation">
+                  <h3 class="menu-toggle"><?php _e( 'Menu', 'twentytwelve' ); ?></h3>
+                    <a href="<?php echo home_url(); ?>" class="basho-logo"></a>
+                <ul class="nav-links">
+                             <a href="<?php echo home_url(); ?>/company/"><li>Company</li></a>
+                             <a href="<?php echo home_url(); ?>/riak/"><li>Riak</li></a>
+                             <a href="<?php echo home_url(); ?>/riak-cloud-storage/"><li>Riak CS</li></a>
+                             <a href="<?php echo home_url(); ?>/resources/"><li>Resources</li></a>
+                             <a href="<?php echo home_url(); ?>/contact/"><li>Contact</li></a>
+                    </ul><!--nav-links-->
+                    <form action="http://basho.com/" id="searchform" method="get" role="search">
+                      <div><label for="s" class="screen-reader-text">Search for:</label>
+                      <input type="text" id="s" name="s" value="">
+                      <input type="submit" value="Search" id="searchsubmit">
+                      </div>
+                    </form>
+                        <a href="http://basho.co.jp/"><div class="jp-white"><div class="jp-red"></div><!--red--></div><!--red--></a>
+                 </div><!--main-navigation-->
+            </div><!-- #site-navigation -->
+
+            <div class="mobile-nav">
+                     <div id="top">
+                        <div class="block">
+                           
+                            <a class="nav-btn" id="nav-open-btn" href="#nav">
+                            <div class="head">
+                                  <div id="activator">
+                                    Menu
+                                  </div><!--activator-->
+                             </div><!--head-->
+                            </a>
+                            <div class="basho-logo-mobile"></div>
+                        </div><!--block-->
+                    </div><!--top-->
+                    <div id="nav">
+                <div class="block">
+                        <ul>
+                            <li class="is-active"><a href="http://basho.com/">Basho Home</a></li>
+                            <li><a href="http://basho.com/company/">Company</a></li>
+                            <li><a href="http://basho.com/riak/">Riak</a></li>
+                            <li><a href="http://basho.com/riak-enterprise/">Riak Enterprise</a></li>
+                            <li><a href="http://basho.com/riak-cloud-storage/">Riak CS</a></li>
+                            <li><a href="http://basho.com/resources/">Resources</a></li>
+                            <li><a href="http://basho.com/contact/">Contact</a></li>
+                            <li><a href="http://basho.com/riak-users/">Riak Users</a></li>
+                            <li><a href="http://basho.com/news/">News</a></li>
+                            <li><a href="http://basho.com/blog/">Blog</a></li>
+                            <li><a href="http://docs.basho.com/" target="_blank">Docs</a></li>
+                            <li><a href="http://basho.com/partnerships/">Partners</a></li>
+                            <li><a href="http://basho.com/events/">Events</a></li>
+                            <li><a href="http://basho.com/careers/">Careers</a></li>
+                            <li><a href="http://basho.co.jp/" target="_blank">Basho Japan</a></li>
+                        </ul>
+                        <a class="close-btn" id="nav-close-btn" href="#top">Return to Content</a>
+                        </div><!--block-->
+                </div><!--nav-->
+             </div><!--mobile-nav-->
+
+
+          <%= yield %>
+
+
+<footer class="clear-mobile" role="contentinfo" id="colophon">
+  <div class="foot-area-contain">
+        <div class="foot-nav-wrap foot-item">
+            <ul class="footer-nav">
+                    <li><a href="http://basho.com/riak-users/">Users</a></li>
+                    <li><a href="http://basho.com/news/">News</a></li>
+                    <li><a href="http://basho.com/blog/">Blog</a></li>
+                    <li><a target="_blank" href="http://docs.basho.com/">Docs</a></li>
+                    <li><a href="http://basho.com/partnerships/">Partners</a></li>
+                    <li><a href="http://basho.com/events/">Events</a></li>
+                    <li><a href="http://basho.com/careers/">Careers</a></li>
+            </ul><!-- .footer-nav -->
+        </div><!--foot-nav-wrap-->
+        <div class="foot-blog foot-item">
+          <h2 class="ft-sect-title">BLOG</h2>
+                                          
+            
+            <div class="ft-sect"><span class="ft-blog-title"><a title="Permanent Link: Basho Events in September" rel="bookmark" href="http://basho.com/basho-events-in-september/">Basho Events in September</a></span><br>
+                <span class="ft-more"><a href="http://basho.com/basho-events-in-september/">MORE</a></span>
+                </div><!--ft-sect-->
+            
+            <div class="ft-sect"><span class="ft-blog-title"><a title="Permanent Link: Customer.io Gains 6x Speed Improvement by Moving from MongoDB to Riak" rel="bookmark" href="http://basho.com/customer-io-gains-6x-speed-improvement-by-moving-from-mongodb-to-riak/">Customer.io Gains 6x Speed Improvement by Moving from MongoDB to Riak</a></span><br>
+                <span class="ft-more"><a href="http://basho.com/customer-io-gains-6x-speed-improvement-by-moving-from-mongodb-to-riak/">MORE</a></span>
+                </div><!--ft-sect-->
+                                    
+        </div><!--foot-blog-->
+        <div class="foot-news foot-item">
+          <h2 class="ft-sect-title">NEWS</h2>
+                                          
+            
+            <div class="ft-sect"><span class="ft-blog-title"><a title="Permanent Link: Basho Chief Architect Speaking at NoSQL Now! Conference" rel="bookmark" href="http://basho.com/basho-chief-architect-speaking-at-nosql-now-conference/">Basho Chief Architect Speaking at NoSQL Now! Conference</a></span><br> 
+                <span class="ft-more"><a href="http://basho.com/basho-chief-architect-speaking-at-nosql-now-conference/">MORE</a></span>
+                </div><!--ft-sect-->
+            
+            <div class="ft-sect"><span class="ft-blog-title"><a title="Permanent Link: Basho Unveils Riak CS 1.4, Driving Distributed Cloud Storage Innovation for Public and Private Clouds" rel="bookmark" href="http://basho.com/basho-unveils-riak-cs-1-4-driving-distributed-cloud-storage-innovation-for-public-and-private-clouds/">Basho Unveils Riak CS 1.4, Driving Distributed Cloud Storage Innovation for Public and Private Clouds</a></span><br> 
+                <span class="ft-more"><a href="http://basho.com/basho-unveils-riak-cs-1-4-driving-distributed-cloud-storage-innovation-for-public-and-private-clouds/">MORE</a></span>
+                </div><!--ft-sect-->
+                                </div><!--foot-news-->
+        <div class="foot-social foot-item">
+<a target="_blank" href="https://github.com/basho"><i class="icon-github-3"></i></a><a target="_blank" href="https://twitter.com/basho"><i class="icon-twitter"></i></a><a target="_blank" href="https://www.facebook.com/bashoriak"><i class="icon-facebook-2"></i></a><a target="_blank" href="http://www.youtube.com/user/BashoTechnologies"><i class="icon-youtube-sign"></i></a>
+        </div><!--foot-social-->
+    </div><!--foot-area-contain-->
+        
+        <div class="clear"></div>
+        
+        <div class="copyright small">Copyright &copy; 2013 <strong>Basho Technologies, Inc.</strong> All rights reserved. <a href="http://basho.com/privacy-policy/" rel="license">Terms &amp; Conditions</a></div>
+        
+</footer>
+
 </div>
-
-<div class="container">
-
-  <%= yield %>
-
-</div> <!-- /container -->
+</div>
 
 <!-- Le javascript
     ================================================== -->
@@ -60,6 +146,26 @@
 <script src="/js/jquery-ui.min.js"></script>
 <script src="/js/bootstrap.js"></script>
 <script src="/js/index.js"></script>
+
+
+<script type="text/javascript">
+/*---------------------------------------------------*/
+/*  Opens/closes the Basho mobile nav
+/*---------------------------------------------------*/
+
+/* 'Menu' button toggle */
+$('#activator').click(function(){
+  $('html').toggleClass('js-nav');
+});
+
+/* Close button removes class */
+$('#nav-close-btn').click(function(){
+  $('html').removeClass('js-nav');
+});
+
+</script>
+
+
 
 </body>
 </html>

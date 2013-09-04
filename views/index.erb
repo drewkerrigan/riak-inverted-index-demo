@@ -1,34 +1,77 @@
-<h1>Zombies...</h1>
-
-<p>There are zombies here</p>
-
-<h1>Query</h1>
-
-<form class="well form-search" id="query-form">
-  <div class="control-group">
-    <label class="control-label" for="select01">Index Method</label>
-    <div class="controls">
-      <select id="index_select">
-        <option value="zip_inv">Term-Based</option>
-        <option value="zip_bin">2i</option>
-      </select>
+<div id="main" class="wrapper">
+  <div class="drop-bottom-wrapper">
+    <div class="drop-bottom-wrapper-inner">
+      <div class="graphic-bashozombie"></div>
+      <div class="drop-bottom">
+        <i class="icon-teardrop-left"></i>
+      </div>
     </div>
   </div>
-  <div class="ui-widget">
-    <label for="zip_input">Zip: </label> <input id="zip_input" value="39201" />
-    <button type="submit" class="btn">Find Zombies</button>
-    <img src="/img/loading.gif" width="32px" height="32px" id="loading" style="display:none;" />
+  <div class="headline-wrap">
+    <div class="headline">
+      <div class="box box-headline">
+        <p>In the United States, the CDC has recovered 1 million Acute Zombilepsy vicitims and has asked for our help loading the data into a Riak cluster for analysis and ground team support.</p>
+        <h1>We need your help to locate the zombies, index them, and save the world.</h2>
+        <a href="http://basho.com/indexing-the-zombie-apocalypse-with-riak">For more details, visit our blog &#187;</a>
+        <div class="drop-bottom-wrapper-mobile">
+          <div class="drop-bottom-wrapper-inner">
+            <div class="graphic-bashozombie"></div>
+            <div class="drop-bottom">
+              <i class="icon-teardrop-left"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</form>
+  <div class="page-contain">
+    <div class="hfeed site" id="page">
+      <div class="site-content" id="primary">
+        <div role="main" id="content">
+          <div class="box box-query">
 
-<div class="alert" id="alert">
-  <strong>No zombies found but the contagion is spreading quickly!</strong>
+          <form class="well form-search" id="query-form">
+            <div class="control-group">
+              <label class="control-label" for="select01">Index Method</label>
+              <div class="controls">
+                <select id="index_select">
+                  <option value="zip_inv">Term-Based</option>
+                  <option value="zip_bin">2i</option>
+                </select>
+              </div>
+            </div>
+            <div class="ui-widget">
+              <label for="zip_input">Zip Code</label>
+              <input type="text" id="zip_input" value="39201" />
+            </div>
+            <div class="clear"></div>
+            <div class="loading-row"><img src="/img/loading.gif" width="32px" height="32px" id="loading" style="display:none;" /></div>
+            <div class="query-button-row"><button type="submit" class="btn">Find Zombies</button></div>
+          </form>
+
+          </div>
+
+          <div class="alert" id="alert">
+            <strong>No zombies found but the contagion is spreading quickly!</strong>
+          </div>
+
+          <!--<div class="pagination" id="pagination"></div>-->
+          <div id="pagination" class="pagination"><ul><li><a onclick="getZombies(1)" href="#">Prev</a></li><li class="active"><a onclick="getZombies(1)" href="#">1</a></li><li><a onclick="getZombies(51)" href="#">2</a></li><li><a onclick="getZombies(101)" href="#">3</a></li><li><a onclick="getZombies(151)" href="#">4</a></li><li><a onclick="getZombies(201)" href="#">5</a></li><li><a onclick="getZombies(251)" href="#">6</a></li><li><a onclick="getZombies(301)" href="#">7</a></li><li><a onclick="getZombies(351)" href="#">8</a></li><li><a onclick="getZombies(401)" href="#">9</a></li><li><a onclick="getZombies(451)" href="#">10</a></li><li><a onclick="getZombies(501)" href="#">11</a></li><li><a onclick="getZombies(551)" href="#">12</a></li><li><a onclick="getZombies(601)" href="#">13</a></li><li><a onclick="getZombies(651)" href="#">14</a></li><li><a onclick="getZombies(701)" href="#">15</a></li><li><a onclick="getZombies(751)" href="#">16</a></li><li><a onclick="getZombies(801)" href="#">17</a></li><li><a onclick="getZombies(851)" href="#">18</a></li><li><a onclick="getZombies(901)" href="#">19</a></li><li><a onclick="getZombies(951)" href="#">20</a></li><li><a onclick="getZombies(1001)" href="#">21</a></li><li><a onclick="getZombies(1051)" href="#">22</a></li><li><a onclick="getZombies(1101)" href="#">23</a></li><li><a onclick="getZombies(1151)" href="#">24</a></li><li><a onclick="getZombies(1201)" href="#">25</a></li><li><a onclick="getZombies(1251)" href="#">26</a></li><li><a onclick="getZombies(1301)" href="#">27</a></li><li><a onclick="getZombies(1351)" href="#">28</a></li><li><a onclick="getZombies(1401)" href="#">29</a></li><li><a onclick="getZombies(1451)" href="#">30</a></li><li><a onclick="getZombies(1501)" href="#">31</a></li><li><a onclick="getZombies(1551)" href="#">32</a></li><li><a onclick="getZombies(1601)" href="#">33</a></li><li><a onclick="getZombies(1651)" href="#">34</a></li><li><a onclick="getZombies(1701)" href="#">35</a></li><li><a onclick="getZombies(1751)" href="#">36</a></li><li><a onclick="getZombies(1801)" href="#">37</a></li><li><a onclick="getZombies(1851)" href="#">38</a></li><li><a onclick="getZombies(1901)" href="#">39</a></li><li><a onclick="getZombies(1951)" href="#">40</a></li><li><a onclick="getZombies(2001)" href="#">41</a></li><li><a onclick="getZombies(2051)" href="#">42</a></li><li><a onclick="getZombies(2101)" href="#">43</a></li><li><a onclick="getZombies(2151)" href="#">44</a></li><li><a onclick="getZombies(2201)" href="#">45</a></li><li><a onclick="getZombies(2251)" href="#">46</a></li><li><a onclick="getZombies(2301)" href="#">47</a></li><li><a onclick="getZombies(2351)" href="#">48</a></li><li><a onclick="getZombies(2401)" href="#">49</a></li><li><a onclick="getZombies(2451)" href="#">50</a></li><li><a onclick="getZombies(51)" href="#">Next</a></li></ul><p>Showing zombies 1-50 of 2476</p></div>
+
+          <div class="well" id="map-canvas"></div>
+
+          <div class="table-wrapper">
+    <table id="query_results" class="table table-striped table-bordered table-condensed"><tbody><tr><th>dna</th><th>sex</th><th>name</th><th>address</th><th>city</th><th>state</th><th>zip</th><th>phone</th><th>birthdate</th><th>ssn</th><th>job</th><th>bloodtype</th><th>weight</th><th>height</th></tr><tr><td>GAGGTTGGAT...</td><td>female</td><td>Tameka G Harrison</td><td>1919 Tanglewood Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-902-4107</td><td>12/30/1954</td><td>587-94-8855</td><td>Molding coremaking and casting machine tender</td><td>AB+</td><td>125.4</td><td>5' 8"</td></tr><tr><td>AAACCCAGAA...</td><td>female</td><td>Terri S Lindahl</td><td>4067 Washington Avenue</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-906-7372</td><td>10/25/1988</td><td>587-18-9826</td><td>Food and beverage manager</td><td>A+</td><td>103.4</td><td>5' 1"</td></tr><tr><td>GGCAACTAGC...</td><td>female</td><td>Paula C Foster</td><td>4199 Lena Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-551-7396</td><td>8/30/1943</td><td>427-41-3351</td><td>Adjuster</td><td>O+</td><td>195.1</td><td>5' 7"</td></tr><tr><td>GTCGATTGCT...</td><td>female</td><td>Dolores R Wiley</td><td>2750 Lena Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-451-7390</td><td>2/26/1940</td><td>428-90-7634</td><td>Gaming machine repairer</td><td>A+</td><td>205.5</td><td>5' 1"</td></tr><tr><td>ACACGGCCTG...</td><td>female</td><td>Luvenia T Powell</td><td>1218 Saint Clair Street</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-527-8917</td><td>9/28/1969</td><td>428-56-9287</td><td>Locksmith</td><td>A+</td><td>199.3</td><td>5' 5"</td></tr><tr><td>TATTGTGGAT...</td><td>male</td><td>Johnny J Black</td><td>4723 Saint Clair Street</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-527-8951</td><td>8/25/1951</td><td>587-66-4281</td><td>Administrative office specialist</td><td>A+</td><td>249.5</td><td>5' 10"</td></tr><tr><td>AGTGGCTCAG...</td><td>male</td><td>Theodore S Wade</td><td>1927 Washington Avenue</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-969-8937</td><td>11/1/1951</td><td>425-95-0208</td><td>Motor coach driver</td><td>O+</td><td>151.6</td><td>5' 10"</td></tr><tr><td>GGACAAGATT...</td><td>male</td><td>Morris M Lieb</td><td>2698 Tanglewood Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-820-6284</td><td>5/6/1938</td><td>426-06-2382</td><td>Fire prevention specialist</td><td>O+</td><td>149.4</td><td>5' 11"</td></tr><tr><td>TGATATCGCG...</td><td>female</td><td>Kim J Buggs</td><td>2264 Reppert Coal Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-219-4369</td><td>4/18/1951</td><td>587-37-1936</td><td>Trader</td><td>A+</td><td>132.7</td><td>5' 0"</td></tr><tr><td>AGAGAATGTT...</td><td>female</td><td>Tricia T Perez</td><td>94 Rafe Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-701-9076</td><td>12/19/1959</td><td>426-77-4787</td><td>Distribution clerk</td><td>A+</td><td>154.7</td><td>5' 0"</td></tr><tr><td>AGCCTAGCCA...</td><td>female</td><td>Laura C Mondy</td><td>2987 Devils Hill Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-891-9518</td><td>6/25/1957</td><td>426-20-4042</td><td>Local truck driver</td><td>B+</td><td>158.2</td><td>5' 9"</td></tr><tr><td>CGTCGACGCC...</td><td>male</td><td>Leonard A Oliver</td><td>2806 Reppert Coal Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-202-5368</td><td>9/20/1928</td><td>426-67-2286</td><td>Gaming and sports book writer</td><td>B+</td><td>221.3</td><td>5' 8"</td></tr><tr><td>TCTACAGATC...</td><td>female</td><td>Michelle D Smith</td><td>2151 Lena Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-523-7698</td><td>11/30/1938</td><td>426-39-9673</td><td>News camera operator</td><td>O-</td><td>184.8</td><td>4' 11"</td></tr><tr><td>GAGCGCCGGT...</td><td>male</td><td>Joseph R Hardy</td><td>1286 Lena Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-552-2707</td><td>10/23/1933</td><td>426-62-1210</td><td>Physical oceanographer</td><td>O+</td><td>194.7</td><td>5' 7"</td></tr><tr><td>TTCCGCTGCT...</td><td>male</td><td>Agustin C Spencer</td><td>4940 Eastland Avenue</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-392-7008</td><td>6/30/1978</td><td>426-08-0132</td><td>Social science research assistant</td><td>B+</td><td>210.1</td><td>6' 3"</td></tr><tr><td>GTCCTGAGTT...</td><td>male</td><td>Matthew T Blankenship</td><td>4963 Mcwhorter Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-490-2306</td><td>5/8/1957</td><td>428-68-8807</td><td>Health psychologist</td><td>A+</td><td>246.4</td><td>5' 11"</td></tr><tr><td>TCCCGGATAC...</td><td>male</td><td>Stephen K Moncrief</td><td>1754 Lena Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-455-8950</td><td>10/6/1984</td><td>428-69-0483</td><td>Cost consultant</td><td>A+</td><td>142.1</td><td>6' 1"</td></tr><tr><td>GTTTTCATTC...</td><td>female</td><td>Holly M Wilson</td><td>1769 Gorby Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-313-6906</td><td>9/17/1965</td><td>427-18-8173</td><td>Apartment rental agent</td><td>A-</td><td>185.9</td><td>5' 9"</td></tr><tr><td>ATGGTTAATA...</td><td>female</td><td>Bessie T Evans</td><td>829 Lena Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-555-8846</td><td>6/14/1982</td><td>427-03-4045</td><td>Production assistant</td><td>O+</td><td>144.3</td><td>5' 9"</td></tr><tr><td>ACCTGGTCGG...</td><td>male</td><td>Michael E Smith</td><td>4881 Eastland Avenue</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-360-8746</td><td>12/14/1960</td><td>426-84-9192</td><td>Information architect</td><td>O+</td><td>166.3</td><td>5' 8"</td></tr><tr><td>TCGATGAACC...</td><td>female</td><td>April J Johnson</td><td>570 Mcwhorter Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-479-8700</td><td>7/19/1990</td><td>428-50-4059</td><td>Advertising sales agent</td><td>AB+</td><td>152.2</td><td>5' 7"</td></tr><tr><td>CCAACTTACA...</td><td>female</td><td>Felicia B Mahoney</td><td>1782 Walnut Street</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-565-5169</td><td>6/19/1934</td><td>427-87-1400</td><td>Marketing research analyst</td><td>O+</td><td>212.1</td><td>5' 7"</td></tr><tr><td>CACCTAGACA...</td><td>female</td><td>Eloise H Swanson</td><td>3285 Saint Clair Street</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-588-0774</td><td>10/7/1956</td><td>427-33-2870</td><td>Public affairs specialist</td><td>A+</td><td>194.3</td><td>5' 5"</td></tr><tr><td>CTGTGGCGGT...</td><td>male</td><td>Daniel T Beal</td><td>2378 Gorby Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-292-4297</td><td>4/20/1980</td><td>428-68-4826</td><td>Electronic transcriber</td><td>A+</td><td>176.0</td><td>5' 10"</td></tr><tr><td>GGCTAAGCCG...</td><td>female</td><td>Marian K Thomas</td><td>1215 Lena Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-552-6954</td><td>7/25/1932</td><td>425-77-2382</td><td>Endodontist</td><td>O+</td><td>171.6</td><td>5' 7"</td></tr><tr><td>GCACCCTGAC...</td><td>male</td><td>Robert R Miller</td><td>2869 Devils Hill Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-872-9283</td><td>3/26/1943</td><td>587-48-6564</td><td>Electronic publishing specialist</td><td>O+</td><td>196.0</td><td>5' 10"</td></tr><tr><td>ACTTGGAGTA...</td><td>female</td><td>Gabrielle J Kirby</td><td>3463 Rafe Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-719-0256</td><td>5/5/1988</td><td>425-17-3053</td><td>Magnetic resonance (MR) technologist</td><td>B+</td><td>190.1</td><td>5' 4"</td></tr><tr><td>CAGCATGGGC...</td><td>female</td><td>Jane G Ruiz</td><td>3364 Lena Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-499-5257</td><td>5/25/1954</td><td>427-69-2901</td><td>Dental hygienist</td><td>O+</td><td>214.9</td><td>5' 1"</td></tr><tr><td>CTGCACACCT...</td><td>male</td><td>Larry G Meyer</td><td>4902 Washington Avenue</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-944-7533</td><td>6/9/1927</td><td>425-54-1209</td><td>Piano repairer</td><td>A+</td><td>169.8</td><td>5' 11"</td></tr><tr><td>TGCACAATCA...</td><td>female</td><td>Annie E Franklin</td><td>2886 Lena Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-449-6718</td><td>9/13/1960</td><td>587-22-1486</td><td>Promoter</td><td>B+</td><td>139.5</td><td>5' 7"</td></tr><tr><td>CGCTCACCCC...</td><td>female</td><td>Carolyn K Harrison</td><td>3327 Gorby Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-325-1975</td><td>10/2/1950</td><td>426-62-6429</td><td>Economic geographer</td><td>O+</td><td>204.6</td><td>5' 7"</td></tr><tr><td>GTTAGTCCCG...</td><td>female</td><td>Dianna V Rafferty</td><td>2705 Devils Hill Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-816-7756</td><td>12/28/1928</td><td>426-34-1792</td><td>Time checker</td><td>O+</td><td>141.9</td><td>5' 4"</td></tr><tr><td>AACGCGCAAT...</td><td>female</td><td>Louise E Isbell</td><td>3219 School House Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-742-5747</td><td>2/6/1976</td><td>427-94-5476</td><td>Ironworker</td><td>O-</td><td>208.6</td><td>5' 1"</td></tr><tr><td>CCCTTTGTGC...</td><td>female</td><td>Dorothy J Gower</td><td>4781 Washington Avenue</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-968-5268</td><td>9/9/1968</td><td>428-70-4802</td><td>Chief engineer</td><td>AB-</td><td>164.1</td><td>5' 4"</td></tr><tr><td>AATATAAGCG...</td><td>male</td><td>Eduardo E Slaughter</td><td>1792 Walnut Street</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-660-7169</td><td>8/10/1948</td><td>426-14-4370</td><td>Transportation storage and distribution manager</td><td>A+</td><td>223.5</td><td>6' 0"</td></tr><tr><td>GAATGAAAGA...</td><td>female</td><td>Helen D Baumgartner</td><td>3007 Mcwhorter Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-499-3680</td><td>6/25/1945</td><td>425-35-4633</td><td>Passenger rate clerk</td><td>B+</td><td>136.8</td><td>5' 1"</td></tr><tr><td>ATATGCTTCG...</td><td>female</td><td>Kori R Baker</td><td>197 Washington Avenue</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-974-7801</td><td>4/18/1981</td><td>428-21-2093</td><td>Land acquisition specialist</td><td>A+</td><td>159.7</td><td>5' 8"</td></tr><tr><td>CAGGTGGTGG...</td><td>male</td><td>Peter V Lindsey</td><td>1074 Brownton Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-391-1846</td><td>12/1/1952</td><td>587-75-6100</td><td>Control room assistant</td><td>A+</td><td>189.0</td><td>5' 9"</td></tr><tr><td>CTACGACTCC...</td><td>male</td><td>Emmitt C Peters</td><td>1078 Mcwhorter Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-503-7159</td><td>6/10/1929</td><td>425-61-1582</td><td>Wholesale buyer</td><td>O+</td><td>153.1</td><td>5' 7"</td></tr><tr><td>AGTTCTCTAG...</td><td>female</td><td>Ashley T Metzger</td><td>3067 Washington Avenue</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-949-3537</td><td>9/6/1970</td><td>426-31-2428</td><td>Natural sciences manager</td><td>AB+</td><td>120.8</td><td>5' 3"</td></tr><tr><td>CAAAATGGGT...</td><td>male</td><td>Owen J Rutherford</td><td>3286 Lena Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-508-3898</td><td>9/26/1962</td><td>425-56-2527</td><td>LAN administrator</td><td>A+</td><td>165.0</td><td>5' 7"</td></tr><tr><td>TATAGATGAC...</td><td>female</td><td>Teresa J Healey</td><td>627 Tanglewood Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-854-7190</td><td>4/21/1986</td><td>428-69-8159</td><td>Promotions specialist</td><td>A+</td><td>132.7</td><td>5' 7"</td></tr><tr><td>AACTCCGCGC...</td><td>female</td><td>Karen W Platz</td><td>3664 Eastland Avenue</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-365-8015</td><td>5/26/1969</td><td>428-01-1849</td><td>Mental health social worker</td><td>B+</td><td>159.5</td><td>5' 7"</td></tr><tr><td>CGGTGCTCGG...</td><td>male</td><td>Allan A Thompson</td><td>4298 Tanglewood Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-934-3173</td><td>6/27/1975</td><td>427-94-5053</td><td>Industrial machinery mechanic</td><td>O-</td><td>146.3</td><td>5' 8"</td></tr><tr><td>CCCGTTGGGG...</td><td>male</td><td>James K Labelle</td><td>4030 Devils Hill Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-812-6219</td><td>2/20/1960</td><td>425-24-6306</td><td>Clinical dietitian</td><td>O+</td><td>147.0</td><td>6' 1"</td></tr><tr><td>CTATTCACAG...</td><td>male</td><td>Scott S Norris</td><td>209 Devils Hill Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-801-0304</td><td>3/30/1974</td><td>426-53-7410</td><td>Family services social worker</td><td>A+</td><td>249.3</td><td>5' 8"</td></tr><tr><td>TGCTATCGCG...</td><td>female</td><td>Marsha J Frisbie</td><td>2631 Rafe Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-687-8231</td><td>3/30/1964</td><td>426-01-3919</td><td>Bookmobile driver</td><td>A-</td><td>203.5</td><td>5' 7"</td></tr><tr><td>TTCTGGGATT...</td><td>female</td><td>Ione W Hatfield</td><td>1075 Gorby Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>601-308-1075</td><td>5/13/1980</td><td>428-17-2324</td><td>Millwright</td><td>O+</td><td>110.9</td><td>5' 1"</td></tr><tr><td>AGCTAATTTC...</td><td>female</td><td>Patricia A Terrill</td><td>2654 Tanglewood Road</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-822-3949</td><td>10/22/1943</td><td>428-66-4950</td><td>Camp director</td><td>O+</td><td>223.1</td><td>5' 1"</td></tr><tr><td>AGTGGTATTC...</td><td>male</td><td>Robert C Nelson</td><td>857 Rafe Lane</td><td>Jackson</td><td>MS</td><td>39201</td><td>662-769-1760</td><td>3/24/1964</td><td>425-81-4661</td><td>Airline steward</td><td>O+</td><td>254.5</td><td>5' 9"</td></tr></tbody></table>
 </div>
+  <!--
+          <div class="table-wrapper">
+              <table class="table table-striped table-bordered table-condensed" id="query_results"></table>
+          </div>
+-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- /main -->
 
-<div class="pagination" id="pagination"></div>
 
-<div class="well" id="map-canvas"></div>
-
-<div >
-    <table class="table table-striped table-bordered table-condensed" id="query_results"></table>
-</div>
