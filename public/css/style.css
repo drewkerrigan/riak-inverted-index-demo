@@ -392,7 +392,7 @@ button {
 
 .box-query {
 	width      : 638px;
-	margin     : 100px auto 0 auto;
+	margin     : 100px auto 20px auto;
 	padding    : 1.5em 0;
 	text-align : center;
 }
@@ -822,7 +822,7 @@ and (min-width : 500px) {
 
 	.box-query {
 		width : auto;
-		margin : 20px 2% 0 2%;
+		margin : 20px 2% 20px 2%;
 	}
 
 	.control-group,
