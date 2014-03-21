@@ -1,0 +1,885 @@
+/*---------------------------------------------------------------------------------------*/
+/*  Fonts                                                                                 
+/*---------------------------------------------------------------------------------------*/
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot');
+	src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('fonts/icomoon.woff') format('woff'),
+		url('fonts/icomoon.ttf') format('truetype'),
+		url('fonts/icomoon.svg#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+    font-family: 'open_sansbold';
+    src: url('fonts/OpenSans-Bold-webfont.eot');
+    src: url('fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Bold-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sansbold_italic';
+    src: url('fonts/OpenSans-BoldItalic-webfont.eot');
+    src: url('fonts/OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-BoldItalic-webfont.woff') format('woff'),
+         url('fonts/OpenSans-BoldItalic-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-BoldItalic-webfont.svg#open_sansbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sansextrabold';
+    src: url('fonts/OpenSans-ExtraBold-webfont.eot');
+    src: url('fonts/OpenSans-ExtraBold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-ExtraBold-webfont.woff') format('woff'),
+         url('fonts/OpenSans-ExtraBold-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-ExtraBold-webfont.svg#open_sansextrabold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sansextrabold_italic';
+    src: url('fonts/OpenSans-ExtraBoldItalic-webfont.eot');
+    src: url('fonts/OpenSans-ExtraBoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-ExtraBoldItalic-webfont.woff') format('woff'),
+         url('fonts/OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-ExtraBoldItalic-webfont.svg#open_sansextrabold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sansitalic';
+    src: url('fonts/OpenSans-Italic-webfont.eot');
+    src: url('fonts/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Italic-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Italic-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sanslight';
+    src: url('fonts/OpenSans-Light-webfont.eot');
+    src: url('fonts/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Light-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
+	src: local('open_sanslight'), local('open_sanslight'),
+         url('fonts/OpenSans-Light-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sanslight_italic';
+    src: url('fonts/OpenSans-LightItalic-webfont.eot');
+    src: url('fonts/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-LightItalic-webfont.woff') format('woff'),
+         url('fonts/OpenSans-LightItalic-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-LightItalic-webfont.svg#open_sanslight_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sansregular';
+    src: url('fonts/OpenSans-Regular-webfont.eot');
+    src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Regular-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sanssemibold';
+    src: url('fonts/OpenSans-Semibold-webfont.eot');
+    src: url('fonts/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Semibold-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Semibold-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Semibold-webfont.svg#open_sanssemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'open_sanssemibold_italic';
+    src: url('fonts/OpenSans-SemiboldItalic-webfont.eot');
+    src: url('fonts/OpenSans-SemiboldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-SemiboldItalic-webfont.woff') format('woff'),
+         url('fonts/OpenSans-SemiboldItalic-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-SemiboldItalic-webfont.svg#open_sanssemibold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'gandhi_serifbold';
+    src: url('fonts/GandhiSerif-Bold-webfont.eot');
+    src: url('fonts/GandhiSerif-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/GandhiSerif-Bold-webfont.woff') format('woff'),
+         url('fonts/GandhiSerif-Bold-webfont.ttf') format('truetype'),
+         url('fonts/GandhiSerif-Bold-webfont.svg#gandhi_serifbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'gandhi_serifbold_italic';
+    src: url('fonts/GandhiSerif-BoldItalic-webfont.eot');
+    src: url('fonts/GandhiSerif-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/GandhiSerif-BoldItalic-webfont.woff') format('woff'),
+         url('fonts/GandhiSerif-BoldItalic-webfont.ttf') format('truetype'),
+         url('fonts/GandhiSerif-BoldItalic-webfont.svg#gandhi_serifbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'gandhi_serifitalic';
+    src: url('fonts/GandhiSerif-Italic-webfont.eot');
+    src: url('fonts/GandhiSerif-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/GandhiSerif-Italic-webfont.woff') format('woff'),
+         url('fonts/GandhiSerif-Italic-webfont.ttf') format('truetype'),
+         url('fonts/GandhiSerif-Italic-webfont.svg#gandhi_serifitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'gandhi_serifregular';
+    src: url('fonts/GandhiSerif-Regular-webfont.eot');
+    src: url('fonts/GandhiSerif-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/GandhiSerif-Regular-webfont.woff') format('woff'),
+         url('fonts/GandhiSerif-Regular-webfont.ttf') format('truetype'),
+         url('fonts/GandhiSerif-Regular-webfont.svg#gandhi_serifregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+	font-family: 'basho-social';
+	src:url('fonts/basho-social.eot');
+	src:url('fonts/basho-social.eot?#iefix') format('embedded-opentype'),
+		url('fonts/basho-social.woff') format('woff'),
+		url('fonts/basho-social.ttf') format('truetype'),
+		url('fonts/basho-social.svg#basho-social') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Assistive text */
+.assistive-text,
+.screen-reader-text {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+
+/*---------------------------------------------------------------------------------------*/
+/*  Zombie App Styles                                                                                 
+/*---------------------------------------------------------------------------------------*/
+
+body {
+	padding-left : 0;
+	padding-top  : 0;
+}
+
+h1 {
+	font-family : 'open_sanssemibold', helvetica, sans-serif;
+	font-size   : 1.85rem;
+  font-weight : normal;
+	padding     : 0.8em 2em 0.25em 2em;
+	line-height : 1.2em;
+}
+
+p {
+	font-size   : 1.3rem;
+	line-height : 1.4em;
+	color       : #616266;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-size: 100%;
+  vertical-align: middle;
+}
+
+label,
+select,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  display: inline-block;
+  height: 20px;
+  padding: 4px 6px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #555555;
+  vertical-align: middle;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  font-family : 'open_sansregular', helvetica, sans-serif;
+}
+
+select,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"] {
+  width: 190px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+}
+
+select {
+  height: 30px;
+}
+
+button {
+	background            : #e1803e;
+	padding               : 0.4em 0.75em;
+	color                 : #fff;
+	font-family           : 'open_sansbold', helvetica, sans-serif;
+	font-size             : 1.25rem;
+	border                : none;
+	-webkit-border-radius : 4px;
+       -moz-border-radius : 4px;
+            border-radius : 4px;
+}
+
+.headline-wrap {
+  background-color : #53819b;
+	height : 454px;
+	margin-top : 62px;
+}
+
+.headline {
+	padding-top : 54px;
+	height      : 400px;
+  width       : auto;
+	background  : transparent url("../img/banner-zombies.jpg") no-repeat 47% 0;
+}
+
+.box {
+	background: #f9f9f9; /* Old browsers */
+	background: -moz-linear-gradient(top, #f9f9f9 0%, #f4f5f6 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#415063), color-stop(100%,#2c3e53)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #f9f9f9 0%,#f4f5f6 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #f9f9f9 0%,#f4f5f6 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #f9f9f9 0%,#f4f5f6 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #f9f9f9 0%,#f4f5f6 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#415063', endColorstr='#f4f5f6',GradientType=0 ); /* IE6-9 */
+	border-radius: 4px;
+	-o-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	padding    : 1.5em;
+}
+
+.box-headline {
+	width      : 670px;
+	margin     : 0 auto;
+	padding    : 2em 90px 8.3em 90px;
+	text-align : center;
+}
+
+.box-headline a {
+	font-family : 'open_sansitalic', helvetica, sans-serif;
+	color       : #e58935;
+	font-size   : 1.3rem;
+  line-height : 1.4em;
+}
+
+.drop-bottom-wrapper {
+	position : absolute;
+	top      : 375px;
+	left     : 0;
+	width    : 100%;
+	height   : 20px;
+	z-index  : 7;
+}
+
+.drop-bottom-wrapper-mobile {
+	display : none;
+}
+
+.drop-bottom-wrapper-inner {
+	position : relative;
+	margin   : 0 auto;
+	width    : 300px;
+}
+
+.drop-bottom {
+	display  : block;
+	position : relative;
+	width    : 300px;
+	transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	float: none !important;
+}
+
+.graphic-bashozombie {
+	position   : absolute;
+	top        : 20px;
+	left       : 88px;
+	background : transparent url("../img/bashozombie.png") no-repeat 0 0;
+	width      : 121px;
+	height     : 223px;
+	z-index    : 9;
+}
+
+.drop-bottom [class^="icon-"] {
+	font-size         : 264px;
+	color             : #d16b47;
+}
+
+.box-query {
+	width      : 638px;
+	margin     : 100px auto 20px auto;
+	padding    : 1.5em 0;
+	text-align : center;
+}
+
+.box-query label {
+	display        : block;
+	font-family    : 'open_sansbold', helvetica, sans-serif;
+	padding-bottom : 10px;
+	font-size      : 1.5em;
+	color          : #616266;
+}
+
+.control-group {
+	position : relative;
+	float   : left;
+	width   : 50%;
+	z-index : 9;
+}
+
+.ui-widget {
+	position : relative;
+	float   : right;
+	width   : 50%;
+	z-index : 10;
+}
+
+.loading-row {
+	height : 32px;
+}
+
+.query-button-row {
+	padding-top : 3px;
+	text-align  : center;
+}
+
+#alert {
+	padding-top : 20px;
+	text-align  : center;
+}
+
+.pagination a {
+	margin-bottom : 3px;
+}
+
+.pagination p {
+	font-family : 'open_sansregular', helvetica, sans-serif;
+	font-size   : 1rem;
+}
+
+#map-canvas {
+	margin-top : 25px;
+  margin-bottom : 12.5px;
+	width : auto;
+  overflow : hidden;
+}
+
+#map-canvas img {
+	max-width : none;
+}
+
+.js-ready #nav {
+  padding-top : 0;
+}
+
+#nav .block {
+  margin-top : 75px;
+}
+
+/*---------------------------------------------------------------------------------------*/
+/*  Table Styles                                                                                 
+/*---------------------------------------------------------------------------------------*/
+.table-wrapper {
+	width : 100%;
+	overflow-x : auto;
+}
+
+table {
+  max-width: 100%;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-family : 'open_sansregular', helvetica, sans-serif;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  font-size: 0.8rem;
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+
+.table th {
+  font-family : 'open_sansbold', helvetica, sans-serif;
+  font-weight : normal;
+}
+
+.table thead th {
+  vertical-align: bottom;
+}
+
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+
+.table .table {
+  background-color: #ffffff;
+}
+
+.table-condensed th,
+.table-condensed td {
+  padding: 4px 5px;
+}
+
+.table-bordered {
+  border: 1px solid #dddddd;
+  border-collapse: separate;
+  *border-collapse: collapse;
+  border-left: 0;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border-left: 1px solid #dddddd;
+}
+
+.table-bordered caption + thead tr:first-child th,
+.table-bordered caption + tbody tr:first-child th,
+.table-bordered caption + tbody tr:first-child td,
+.table-bordered colgroup + thead tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child td,
+.table-bordered thead:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child td {
+  border-top: 0;
+}
+
+.table-bordered thead:first-child tr:first-child > th:first-child,
+.table-bordered tbody:first-child tr:first-child > td:first-child,
+.table-bordered tbody:first-child tr:first-child > th:first-child {
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.table-bordered thead:first-child tr:first-child > th:last-child,
+.table-bordered tbody:first-child tr:first-child > td:last-child,
+.table-bordered tbody:first-child tr:first-child > th:last-child {
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+.table-bordered thead:last-child tr:last-child > th:first-child,
+.table-bordered tbody:last-child tr:last-child > td:first-child,
+.table-bordered tbody:last-child tr:last-child > th:first-child,
+.table-bordered tfoot:last-child tr:last-child > td:first-child,
+.table-bordered tfoot:last-child tr:last-child > th:first-child {
+  -webkit-border-bottom-left-radius: 4px;
+          border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+}
+
+.table-bordered thead:last-child tr:last-child > th:last-child,
+.table-bordered tbody:last-child tr:last-child > td:last-child,
+.table-bordered tbody:last-child tr:last-child > th:last-child,
+.table-bordered tfoot:last-child tr:last-child > td:last-child,
+.table-bordered tfoot:last-child tr:last-child > th:last-child {
+  -webkit-border-bottom-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+}
+
+.table-bordered tfoot + tbody:last-child tr:last-child td:first-child {
+  -webkit-border-bottom-left-radius: 0;
+          border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+}
+
+.table-bordered tfoot + tbody:last-child tr:last-child td:last-child {
+  -webkit-border-bottom-right-radius: 0;
+          border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+}
+
+.table-bordered caption + thead tr:first-child th:first-child,
+.table-bordered caption + tbody tr:first-child td:first-child,
+.table-bordered colgroup + thead tr:first-child th:first-child,
+.table-bordered colgroup + tbody tr:first-child td:first-child {
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.table-bordered caption + thead tr:first-child th:last-child,
+.table-bordered caption + tbody tr:first-child td:last-child,
+.table-bordered colgroup + thead tr:first-child th:last-child,
+.table-bordered colgroup + tbody tr:first-child td:last-child {
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+}
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: #f9f9f9;
+}
+
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+  background-color: #f5f5f5;
+}
+
+table td[class*="span"],
+table th[class*="span"],
+.row-fluid table td[class*="span"],
+.row-fluid table th[class*="span"] {
+  display: table-cell;
+  float: none;
+  margin-left: 0;
+}
+
+.table td.span1,
+.table th.span1 {
+  float: none;
+  width: 44px;
+  margin-left: 0;
+}
+
+.table td.span2,
+.table th.span2 {
+  float: none;
+  width: 124px;
+  margin-left: 0;
+}
+
+.table td.span3,
+.table th.span3 {
+  float: none;
+  width: 204px;
+  margin-left: 0;
+}
+
+.table td.span4,
+.table th.span4 {
+  float: none;
+  width: 284px;
+  margin-left: 0;
+}
+
+.table td.span5,
+.table th.span5 {
+  float: none;
+  width: 364px;
+  margin-left: 0;
+}
+
+.table td.span6,
+.table th.span6 {
+  float: none;
+  width: 444px;
+  margin-left: 0;
+}
+
+.table td.span7,
+.table th.span7 {
+  float: none;
+  width: 524px;
+  margin-left: 0;
+}
+
+.table td.span8,
+.table th.span8 {
+  float: none;
+  width: 604px;
+  margin-left: 0;
+}
+
+.table td.span9,
+.table th.span9 {
+  float: none;
+  width: 684px;
+  margin-left: 0;
+}
+
+.table td.span10,
+.table th.span10 {
+  float: none;
+  width: 764px;
+  margin-left: 0;
+}
+
+.table td.span11,
+.table th.span11 {
+  float: none;
+  width: 844px;
+  margin-left: 0;
+}
+
+.table td.span12,
+.table th.span12 {
+  float: none;
+  width: 924px;
+  margin-left: 0;
+}
+
+.table tbody tr.success > td {
+  background-color: #dff0d8;
+}
+
+.table tbody tr.error > td {
+  background-color: #f2dede;
+}
+
+.table tbody tr.warning > td {
+  background-color: #fcf8e3;
+}
+
+.table tbody tr.info > td {
+  background-color: #d9edf7;
+}
+
+.table-hover tbody tr.success:hover > td {
+  background-color: #d0e9c6;
+}
+
+.table-hover tbody tr.error:hover > td {
+  background-color: #ebcccc;
+}
+
+.table-hover tbody tr.warning:hover > td {
+  background-color: #faf2cc;
+}
+
+.table-hover tbody tr.info:hover > td {
+  background-color: #c4e3f3;
+}
+
+/* ~iPad landscape width  ----------- */
+@media only screen and (max-width : 1024px) {
+	.headline-wrap {
+		margin-top : 0;
+	}
+
+	.box-headline {
+		width : auto;
+		margin  : 0 20px;
+		padding : 2em 40px 8.3em 40px;
+	}
+
+	.pagination,
+	#map-canvas {
+		width   : 96%;
+		margin  : 0 2%;
+	}
+
+	#map-canvas {
+		margin-bottom : 30px;
+	}
+}
+
+@media only screen and (max-width : 950px) {
+  .headline-wrap { height : 454px !important; width : auto; }
+  #colophon { margin-bottom : -85px !important; }
+}
+
+@media only screen and (max-width : 767px) {
+	
+  h1 {
+    padding  : 0.8em 0 0.25em 0;
+  }
+
+  .drop-bottom-wrapper {
+    display : none;
+  }
+
+  .drop-bottom-wrapper-mobile {
+    display  : block;
+    position : relative;
+    width    : 100%;
+    margin   : 20px 0 -96px 0;
+    padding  : 0;
+  }
+
+  .headline-wrap,
+  .headline,
+  .box-headline {
+    height : auto !important;
+    margin-bottom : 20px;
+  }
+
+  .headline {
+    padding-bottom : 50px;
+  }
+
+  .box-query {
+    width : auto;
+    margin : 20px 2% 20px 2%;
+  }
+}
+
+
+/* ~iPhone width  ----------- */
+@media only screen and (max-width : 500px) {
+
+	.drop-bottom-wrapper-mobile .drop-bottom-wrapper,
+	.drop-bottom-wrapper-mobile .drop-bottom {
+		width : 282px;
+	}
+
+  .drop-bottom-wrapper {
+    display : none;
+  }
+
+  .drop-bottom-wrapper-mobile {
+    display  : block;
+    position : relative;
+    width    : 100%;
+    margin   : 20px 0 -96px 0;
+    padding  : 0;
+  }
+
+	.drop-bottom-wrapper-mobile .graphic-bashozombie {
+		left : 80px;
+	}
+
+	.headline-wrap {
+		height : auto !important;
+		margin-bottom : 20px;
+	}
+
+	.headline {
+    height : auto !important;
+		padding-bottom : 100px;
+	}
+
+	.box-headline {
+		padding: 2em 0 0 0;
+    height : auto !important;
+    margin-bottom : 20px;
+	}
+
+	.box-headline p,
+	.box-headline h1,
+	.box-headline a {
+		padding-left : 20px;
+		padding-right : 20px;
+	}
+
+	.box-query {
+		width : auto;
+		margin : 20px 2% 20px 2%;
+	}
+
+	.control-group,
+	.ui-widget {
+		float          : none;
+		width          : 100%;
+		padding-bottom : 5px;
+	}
+}

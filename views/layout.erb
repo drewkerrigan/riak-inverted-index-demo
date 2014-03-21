@@ -13,6 +13,7 @@
   <!--<link href="/css/bootstrap.css" rel="stylesheet">-->
   <link href="/css/map.css" rel="stylesheet">
   <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/style-zombie.css" rel="stylesheet">
   <!--<link href="/css/bootstrap-responsive.css" rel="stylesheet">-->
 
   <!-- Google Analytics Tracking -->
@@ -35,24 +36,29 @@
 <div id="outer-wrap">
   <div id="inner-wrap">
 
-<div id="site-navigation" role="navigation">
+<div role="navigation" id="site-navigation">
               <div class="main-navigation">
                   <h3 class="menu-toggle">Menu</h3>
-                    <a href="http://basho.com/" class="basho-logo"></a>
+                    <a class="basho-logo" href="http://basho.com"></a>
                 <ul class="nav-links">
-                             <a href="http://basho.com/company/"><li>Company</li></a>
                              <a href="http://basho.com/riak/"><li>Riak</li></a>
+                             <a href="http://basho.com/riak-enterprise/"><li>Riak Enterprise</li></a>
                              <a href="http://basho.com/riak-cloud-storage/"><li>Riak CS</li></a>
-                             <a href="http://basho.com/resources/"><li>Resources</li></a>
+                             <a href="http://basho.com/resources/">
+                                                                  <li>
+                                                                  Resources 
+
+                                 </li>
+                             </a>
                              <a href="http://basho.com/contact/"><li>Contact</li></a>
                     </ul><!--nav-links-->
-                    <form action="http://basho.com/" id="searchform" method="get" role="search">
-                      <div><label for="s" class="screen-reader-text">Search for:</label>
-                      <input type="text" id="s" name="s" value="">
-                      <input type="submit" value="Search" id="searchsubmit">
-                      </div>
-                    </form>
-                        <a href="http://basho.co.jp/"><div class="jp-white"><div class="jp-red"></div><!--red--></div><!--red--></a>
+                    <form action="http://basho.com/" class="searchform" id="searchform" method="get" role="search">
+        <div>
+          <label for="s" class="screen-reader-text">Search for:</label>
+          <input type="text" id="s" name="s" value="">
+          <input type="submit" value="Search" id="searchsubmit">
+        </div>
+      </form>                        <a href="http://basho.co.jp/"><div class="jp-white"><div class="jp-red"></div><!--red--></div><!--red--></a>
                  </div><!--main-navigation-->
             </div><!-- #site-navigation -->
 
@@ -60,36 +66,42 @@
                      <div id="top">
                         <div class="block">
                            
-                            <a class="nav-btn" id="nav-open-btn" href="#nav">
+                            <a href="#nav" id="nav-open-btn" class="nav-btn">
                             <div class="head">
                                   <div id="activator">
-                                    Menu
-                                  </div><!--activator-->
-                             </div><!--head-->
+                                       <ul class="bars">
+                                            <li></li>
+                                            <li></li>
+                                            <li></li>
+                                       </ul>
+                                   </div>
+                             </div>
                             </a>
                             <div class="basho-logo-mobile"></div>
-                        </div><!--block-->
+                        </div>
                     </div><!--top-->
                     <div id="nav">
                 <div class="block">
+                        <h2 class="block-title">Home</h2>
                         <ul>
-                            <li><a href="http://basho.com/">Basho Home</a></li>
-                            <li><a href="http://basho.com/company/">Company</a></li>
+                            <li class="is-active"><a href="http://basho.com">Basho Home</a></li>
                             <li><a href="http://basho.com/riak/">Riak</a></li>
                             <li><a href="http://basho.com/riak-enterprise/">Riak Enterprise</a></li>
                             <li><a href="http://basho.com/riak-cloud-storage/">Riak CS</a></li>
+                            <li><a href="http://basho.com/pricing/">Buy Online</a></li>
+                            <li><a href="http://basho.com/company/">Company</a></li>
                             <li><a href="http://basho.com/resources/">Resources</a></li>
                             <li><a href="http://basho.com/contact/">Contact</a></li>
                             <li><a href="http://basho.com/riak-users/">Riak Users</a></li>
                             <li><a href="http://basho.com/news/">News</a></li>
                             <li><a href="http://basho.com/blog/">Blog</a></li>
-                            <li><a href="http://docs.basho.com/" target="_blank">Docs</a></li>
+                            <li><a target="_blank" href="http://docs.basho.com/">Docs</a></li>
                             <li><a href="http://basho.com/partnerships/">Partners</a></li>
                             <li><a href="http://basho.com/events/">Events</a></li>
                             <li><a href="http://basho.com/careers/">Careers</a></li>
-                            <li><a href="http://basho.co.jp/" target="_blank">Basho Japan</a></li>
+                            <li><a target="_blank" href="http://basho.co.jp/">Basho Japan</a></li>
                         </ul>
-                        <a class="close-btn" id="nav-close-btn" href="#top">Return to Content</a>
+                        <a href="#top" id="nav-close-btn" class="close-btn">Return to Content</a>
                         </div><!--block-->
                 </div><!--nav-->
              </div><!--mobile-nav-->
