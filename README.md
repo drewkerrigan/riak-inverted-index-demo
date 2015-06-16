@@ -23,6 +23,15 @@ bundle exec ruby mock.rb
 
 ###To start the real server
 
+#### Ensure Riak is running
+
+The `hosts` file in this directory will determine where data is loaded. Confirm you have access to your local Riak cluster *or* change the `hosts` file to point to your remote environment.
+
+```
+$ $RIAK_APP/bin/riak ping
+pong
+```
+
 ####Load some Zombie data
 
 ```
